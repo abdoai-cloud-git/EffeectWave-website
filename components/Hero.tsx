@@ -158,9 +158,6 @@ const FloatingBeam = React.memo(({ config, animate }: FloatingBeamProps) => {
 
 const Hero: React.FC<HeroProps> = ({
   badge,
-  titleLine1,
-  titleLine2,
-  description,
   buttonText,
   theme,
   lang,
@@ -211,11 +208,6 @@ const Hero: React.FC<HeroProps> = ({
     }),
     [shouldReduceMotion],
   );
-
-  // Keep props wired for compatibility with existing content schema.
-  void titleLine1;
-  void titleLine2;
-  void description;
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-4 sm:px-6 pt-32 pb-28 md:pt-20 md:pb-20">
