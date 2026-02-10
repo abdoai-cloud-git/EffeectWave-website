@@ -33,28 +33,25 @@ function ScrollToTop() {
 const pageVariants: Variants = {
   initial: {
     opacity: 0,
-    y: 20,
-    filter: 'blur(12px)',
-    scale: 0.98
+    y: 12,
+    scale: 0.99
   },
   in: {
     opacity: 1,
     y: 0,
-    filter: 'blur(0px)',
     scale: 1,
     transition: {
-      duration: 0.6,
-      ease: [0.25, 0.46, 0.45, 0.94] as const, // Cubic bezier for smooth entry
+      duration: 0.4,
+      ease: [0.25, 0.46, 0.45, 0.94] as const,
     }
   },
   out: {
     opacity: 0,
-    y: -20,
-    filter: 'blur(12px)',
-    scale: 0.98,
+    y: -8,
+    scale: 0.99,
     transition: {
-      duration: 0.4,
-      ease: [0.55, 0.085, 0.68, 0.53] as const, // Cubic bezier for smooth exit
+      duration: 0.25,
+      ease: "easeIn"
     }
   }
 };
@@ -124,8 +121,6 @@ function AppContent() {
 
       {/* --- GLOBAL PERSISTENT BACKGROUND --- */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        {/* Noise Overlay */}
-        <div className="absolute inset-0 opacity-[0.15] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-150 contrast-150 mix-blend-overlay"></div>
         {/* Starfield (Canvas) - Persists across routes */}
         <StarField />
       </div>

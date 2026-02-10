@@ -98,7 +98,7 @@ const Team: React.FC<TeamProps> = ({ subtitle, title, description, lang }) => {
   return (
     <section className="py-16 md:py-24 px-6 relative overflow-hidden bg-obsidian">
       {/* Background elements */}
-      <div className="absolute right-0 top-0 w-1/3 h-full bg-accent/5 blur-[120px] -z-10 transition-colors duration-700" />
+      <div className="absolute right-0 top-0 w-1/3 h-full -z-10 transition-colors duration-700 gpu-accelerate" style={{ background: 'linear-gradient(to left, var(--color-accent, #ebe125)08, transparent)' }} />
 
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 md:mb-16 gap-8">

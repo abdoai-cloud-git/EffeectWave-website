@@ -15,37 +15,38 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children, theme, title, subtitl
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      
-      {/* --- PAGE SPECIFIC BACKGROUND LAYERS --- */}
-      {/* Note: Starfield and Noise are now global in App.tsx */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-         {/* Top Center Ambient Light (Subtle, Wide) */}
-         <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.15 }}
-            transition={{ duration: 1 }}
-            className="absolute top-[-400px] left-1/2 -translate-x-1/2 w-[1200px] h-[1000px] rounded-full blur-[180px]" 
-            style={{ 
-              background: `radial-gradient(circle at center, ${accentColor}, transparent 70%)` 
-            }} 
-         />
 
-         {/* Bottom Accent Glow */}
-         <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.08 }}
-            transition={{ duration: 1, delay: 0.2 }}
-            className="absolute bottom-[-300px] right-[-100px] w-[800px] h-[800px] rounded-full blur-[200px]" 
-            style={{ backgroundColor: accentColor }} 
-         />
+      {/* --- PAGE SPECIFIC BACKGROUND LAYERS --- */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Top Center Ambient Light — CSS gradient, no blur filter */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.12 }}
+          transition={{ duration: 1 }}
+          className="absolute top-[-300px] left-1/2 -translate-x-1/2 w-[900px] h-[800px] rounded-full gpu-accelerate"
+          style={{
+            background: `radial-gradient(circle at center, ${accentColor}33 0%, transparent 60%)`
+          }}
+        />
+
+        {/* Bottom Accent Glow — CSS gradient, no blur filter */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.06 }}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="absolute bottom-[-200px] right-[-50px] w-[500px] h-[500px] rounded-full gpu-accelerate"
+          style={{
+            background: `radial-gradient(circle, ${accentColor}33 0%, transparent 60%)`
+          }}
+        />
       </div>
 
       {/* --- CONTENT CONTAINER --- */}
       <div className="relative z-10">
-        
+
         {/* Header Section */}
         {(title || subtitle) && (
-          <div className="pt-32 pb-12 md:pb-20 px-6 max-w-7xl mx-auto">
+          <div className="pt-32 pb-12 md:pb-20 px-4 sm:px-6 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -60,13 +61,13 @@ const PageLayout: React.FC<PageLayoutProps> = ({ children, theme, title, subtitl
                   </span>
                 </div>
               )}
-              
+
               {title && (
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white leading-tight drop-shadow-2xl">
                   {title}
                 </h1>
               )}
-              
+
               {description && (
                 <p className="max-w-3xl text-silver/70 text-lg md:text-xl leading-relaxed font-light border-r-2 border-white/10 pr-6 mt-2">
                   {description}

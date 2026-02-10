@@ -75,11 +75,8 @@ const PhilosophyPage: React.FC<PhilosophyPageProps> = ({ theme, lang }) => {
             className={`${lang === 'ar' ? 'order-1 lg:order-2' : 'order-2'} p-1 rounded-[2.5rem] border border-white/10 bg-gradient-to-br from-white/5 to-transparent backdrop-blur-sm`}
           >
             <div className="aspect-square md:aspect-[4/3] rounded-[2.3rem] bg-black/40 overflow-hidden relative flex items-center justify-center">
-              <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-30 mix-blend-overlay"></div>
-
-              {/* Decorative Abstract Shapes */}
-              <div className="absolute top-1/4 left-1/4 w-48 h-48 rounded-full blur-[100px] opacity-40" style={{ backgroundColor: accentColor }}></div>
-              <div className="absolute bottom-1/4 right-1/4 w-32 h-32 rounded-full blur-[60px] bg-white opacity-10"></div>
+              <div className="absolute top-1/4 left-1/4 w-48 h-48 rounded-full opacity-30 gpu-accelerate" style={{ background: `radial-gradient(circle, ${accentColor}55 0%, transparent 60%)` }}></div>
+              <div className="absolute bottom-1/4 right-1/4 w-32 h-32 rounded-full bg-white/5 gpu-accelerate"></div>
 
               <div className="relative z-10 text-center px-6">
                 <h3 className="text-4xl sm:text-5xl md:text-7xl font-english font-bold text-white tracking-tighter opacity-90 drop-shadow-2xl uppercase">

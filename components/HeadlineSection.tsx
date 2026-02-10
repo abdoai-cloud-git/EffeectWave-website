@@ -56,20 +56,12 @@ const HeadlineSection: React.FC<HeadlineSectionProps> = ({
                 }}
                 className="absolute top-0 left-0 w-[100vw] h-[100vh] opacity-[0.08] pointer-events-none gpu-accelerate"
                 style={{
-                    background: `radial-gradient(circle at 30% 30%, ${accentColor} 0%, transparent 50%),
-                       radial-gradient(circle at 70% 60%, ${accentColor} 0%, transparent 50%)`,
-                    filter: 'blur(120px)'
+                    background: `radial-gradient(circle at 30% 30%, ${accentColor}44 0%, transparent 50%),
+                       radial-gradient(circle at 70% 60%, ${accentColor}44 0%, transparent 50%)`,
                 }}
             />
 
-            {/* Subtle Noise Texture */}
-            <div
-                className="absolute inset-0 opacity-[0.2] pointer-events-none mix-blend-overlay"
-                style={{
-                    backgroundImage: `url("https://grainy-gradients.vercel.app/noise.svg")`,
-                    filter: 'contrast(120%) brightness(120%)'
-                }}
-            />
+
 
             <motion.div
                 variants={containerVariants}
