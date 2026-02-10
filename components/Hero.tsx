@@ -97,7 +97,7 @@ const Hero: React.FC<HeroProps> = ({ badge, titleLine1, titleLine2, description,
 
       {/* 1. ATMOSPHERIC PARTICLES (Dust/Light Scattering) */}
       <div className="absolute inset-0 pointer-events-none z-0">
-        {[...Array(30)].map((_, i) => (
+        {[...Array(15)].map((_, i) => (
           <motion.div
             key={i}
             initial={{

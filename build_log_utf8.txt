@@ -1,0 +1,79 @@
+﻿
+> effect-wave-n1@0.0.0 build
+> vite build
+
+[36mvite v6.4.1 [32mbuilding for production...[36m[39m
+transforming...
+[32mΓ£ô[39m 2126 modules transformed.
+node.exe : 
+[31mΓ£ù[39m Build 
+failed in 3.18s
+At line:1 char:1
++ & "C:\Program File
+s\nodejs/node.exe" 
+"C:\Program Files\no
+dejs/node_mo ...
++ ~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
+    + CategoryInfo  
+            : NotS  
+  pecified: ([31   
+ mΓ£ù[39m Build    
+ failed in 3.18    
+s:String) [], R    
+emoteException
+    + FullyQualifie 
+   dErrorId : Nati  
+  veCommandError
+ 
+[31merror during 
+build:
+[31m[vite:terser] 
+terser not found. 
+Since Vite v3, 
+terser has become 
+an optional 
+dependency. You 
+need to install 
+it.[31m
+    at 
+loadTerserPath (file
+:///C:/Users/hello/O
+neDrive/Desktop/Abdo
+/EffectWaveAgency/Ai
+app/node_modules/vit
+e/dist/node/chunks/d
+ep-D4NMHUTW.js:9752:
+13)
+    at 
+Object.renderChunk (
+file:///C:/Users/hel
+lo/OneDrive/Desktop/
+Abdo/EffectWaveAgenc
+y/Aiapp/node_modules
+/vite/dist/node/chun
+ks/dep-D4NMHUTW.js:9
+793:27)
+    at 
+Object.handler (file
+:///C:/Users/hello/O
+neDrive/Desktop/Abdo
+/EffectWaveAgency/Ai
+app/node_modules/vit
+e/dist/node/chunks/d
+ep-D4NMHUTW.js:46558
+:15)
+    at file:///C:/Us
+ers/hello/OneDrive/D
+esktop/Abdo/EffectWa
+veAgency/Aiapp/node_
+modules/rollup/dist/
+es/shared/node-entry
+.js:22548:40
+    at process.proce
+ssTicksAndRejections
+ (node:internal/proc
+ess/task_queues:105:
+5)[39m

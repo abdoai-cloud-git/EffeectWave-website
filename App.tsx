@@ -1,18 +1,26 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import { HashRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
-import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import ServicesPage from './pages/ServicesPage';
-import PhilosophyPage from './pages/PhilosophyPage';
-import TeamPage from './pages/TeamPage';
-import ContactPage from './pages/ContactPage';
 import Footer from './components/Footer';
 import StarField from './components/StarField';
 import { EffectWaveLogo } from './components/EffectWaveLogo';
+
+// Lazy Load Pages
+const HomePage = React.lazy(() => import('./pages/HomePage'));
+const AboutPage = React.lazy(() => import('./pages/AboutPage'));
+const ServicesPage = React.lazy(() => import('./pages/ServicesPage'));
+const PhilosophyPage = React.lazy(() => import('./pages/PhilosophyPage'));
+const TeamPage = React.lazy(() => import('./pages/TeamPage'));
+const ContactPage = React.lazy(() => import('./pages/ContactPage'));
+const GalleryPage = React.lazy(() => import('./pages/GalleryPage'));
+
+const LoadingSpinner = () => (
+  <div className="flex items-center justify-center min-h-screen bg-obsidian text-accent">
+    <div className="w-16 h-16 border-4 border-accent border-t-transparent rounded-full animate-spin"></div>
+  </div>
+);
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -75,6 +83,7 @@ function AppContent() {
     { label: 'من نحن', path: '/about' },
     { label: 'فلسفتنا', path: '/philosophy' },
     { label: 'فريق العمل', path: '/team' },
+    { label: 'المعرض', path: '/gallery' },
     { label: 'تواصل معنا', path: '/contact' },
   ] : [
     { label: 'Home', path: '/' },
@@ -82,6 +91,7 @@ function AppContent() {
     { label: 'About Us', path: '/about' },
     { label: 'Philosophy', path: '/philosophy' },
     { label: 'Team', path: '/team' },
+    { label: 'Gallery', path: '/gallery' },
     { label: 'Contact', path: '/contact' },
   ];
 
@@ -195,6 +205,13 @@ function AppContent() {
                     {lang === 'ar' ? 'فريق العمل' : 'Team'}
                   </Link>
                   <Link
+                    to="/gallery"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block px-6 py-3 text-white hover:bg-white/10 hover:text-accent transition-colors duration-300 font-bold border-b border-white/5 last:border-0 text-right"
+                  >
+                    {lang === 'ar' ? 'المعرض' : 'Gallery'}
+                  </Link>
+                  <Link
                     to="/contact"
                     onClick={() => setIsMenuOpen(false)}
                     className="block px-6 py-3 text-white hover:bg-white/10 hover:text-accent transition-colors duration-300 font-bold border-b border-white/5 last:border-0 text-right"
@@ -294,14 +311,17 @@ function AppContent() {
           animate="in"
           exit="out"
         >
-          <Routes>
-            <Route path="/" element={<HomePage theme={theme} lang={lang} />} />
-            <Route path="/about" element={<AboutPage theme={theme} lang={lang} />} />
-            <Route path="/services" element={<ServicesPage theme={theme} lang={lang} />} />
-            <Route path="/philosophy" element={<PhilosophyPage theme={theme} lang={lang} />} />
-            <Route path="/team" element={<TeamPage theme={theme} lang={lang} />} />
-            <Route path="/contact" element={<ContactPage theme={theme} lang={lang} />} />
-          </Routes>
+          <Suspense fallback={<LoadingSpinner />}>
+            <Routes>
+              <Route path="/" element={<HomePage theme={theme} lang={lang} />} />
+              <Route path="/about" element={<AboutPage theme={theme} lang={lang} />} />
+              <Route path="/services" element={<ServicesPage theme={theme} lang={lang} />} />
+              <Route path="/philosophy" element={<PhilosophyPage theme={theme} lang={lang} />} />
+              <Route path="/team" element={<TeamPage theme={theme} lang={lang} />} />
+              <Route path="/gallery" element={<GalleryPage lang={lang} />} />
+              <Route path="/contact" element={<ContactPage theme={theme} lang={lang} />} />
+            </Routes>
+          </Suspense>
         </motion.main>
       </AnimatePresence>
 

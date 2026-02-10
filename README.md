@@ -2,19 +2,39 @@
 <img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
 </div>
 
-# Run and deploy your AI Studio app
+# EffectWave Agency - Aiapp
 
-This contains everything you need to run your app locally.
+This is a premium React + Vite website designed for EffectWave Agency.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1T3v5kX3KuUETzSvpJ2uwC8ris3fVdNuU
+## 🚀 Deployment
 
-## Run Locally
+The website is optimized for **Cloudflare Pages**.
 
-**Prerequisites:**  Node.js
+### Steps to Deploy:
+1. **Push to GitHub**:
+   - Ensure your code is pushed to your GitHub repository.
+2. **Cloudflare Setup**:
+   - Connect your GitHub repository to [Cloudflare Pages](https://dash.cloudflare.com/).
+   - **Framework Preset**: `Vite`
+   - **Build Command**: `npm run build`
+   - **Build Output Directory**: `dist`
+3. **Custom Domain**:
+   - Add your custom domain in the Cloudflare dashboard under the project settings.
 
+## 📝 Future Features: Blog
+
+A blog feature can be added for $0/month infrastructure cost using **TinaCMS** (Git-centric).
+- To initialize: `npx tinacms@latest init`
+
+## 🛠 Tech Stack
+- **React 19**
+- **Vite**
+- **Tailwind CSS**
+- **Framer Motion**
+
+## 💻 Run Locally
 
 1. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+2. Run the app:
    `npm run dev`
