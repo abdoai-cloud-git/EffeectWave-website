@@ -97,11 +97,28 @@ function AppContent() {
 
   // Scroll listener for navbar visibility
   useEffect(() => {
-    const handleScroll = () => {
+    let frameId: number | null = null;
+
+    const updateScrollState = () => {
       setIsScrolled(window.scrollY > 50);
+      frameId = null;
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    const handleScroll = () => {
+      if (frameId === null) {
+        frameId = window.requestAnimationFrame(updateScrollState);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    updateScrollState();
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (frameId !== null) {
+        window.cancelAnimationFrame(frameId);
+      }
+    };
   }, []);
 
   const handleThemeChange = (newTheme: 'agency' | 'production') => {
@@ -125,7 +142,7 @@ function AppContent() {
       {/* --- GLOBAL PERSISTENT BACKGROUND --- */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         {/* Noise Overlay */}
-        <div className="absolute inset-0 opacity-[0.15] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-150 contrast-150 mix-blend-overlay"></div>
+        <div className="absolute inset-0 opacity-[0.15] noise-overlay brightness-150 contrast-150 mix-blend-overlay"></div>
         {/* Starfield (Canvas) - Persists across routes */}
         <StarField />
       </div>

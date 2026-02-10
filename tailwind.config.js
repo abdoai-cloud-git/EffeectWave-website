@@ -23,7 +23,7 @@ export default {
         english: ['Alexandria', 'sans-serif'],
       },
       backgroundImage: {
-        'noise': "url('https://grainy-gradients.vercel.app/noise.svg')",
+        'noise': "url('/noise.svg')",
       },
       borderRadius: {
         '3xl': '1.5rem',

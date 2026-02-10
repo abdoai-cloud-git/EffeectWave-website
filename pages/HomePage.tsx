@@ -292,17 +292,19 @@ const HomePage: React.FC<HomePageProps> = ({ theme, lang }) => {
         theme={theme}
       />
 
-      <HeadlineSection
-        {...content.headline}
-        theme={theme}
-        lang={lang}
-      />
+      <div className="cv-auto">
+        <HeadlineSection
+          {...content.headline}
+          theme={theme}
+          lang={lang}
+        />
+      </div>
 
-      <div id="about">
+      <div id="about" className="cv-auto">
         <About lang={lang} cards={content.about} />
       </div>
 
-      <div id="services">
+      <div id="services" className="cv-auto">
         <ServicesGrid
           lang={lang}
           title={content.servicesTitle}
@@ -311,14 +313,14 @@ const HomePage: React.FC<HomePageProps> = ({ theme, lang }) => {
         />
       </div>
 
-      <div id="why-us">
+      <div id="why-us" className="cv-auto">
         <WhyUs
           lang={lang}
           reasons={content.whyUs}
         />
       </div>
 
-      <div id="team">
+      <div id="team" className="cv-auto">
         <Team
           lang={lang}
           subtitle={lang === 'ar' ? "فريقنا" : "OUR TEAM"}
@@ -332,4 +334,4 @@ const HomePage: React.FC<HomePageProps> = ({ theme, lang }) => {
   );
 };
 
-export default HomePage;
+export default React.memo(HomePage);

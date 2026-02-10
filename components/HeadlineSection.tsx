@@ -64,11 +64,7 @@ const HeadlineSection: React.FC<HeadlineSectionProps> = ({
 
             {/* Subtle Noise Texture */}
             <div
-                className="absolute inset-0 opacity-[0.2] pointer-events-none mix-blend-overlay"
-                style={{
-                    backgroundImage: `url("https://grainy-gradients.vercel.app/noise.svg")`,
-                    filter: 'contrast(120%) brightness(120%)'
-                }}
+                className="absolute inset-0 opacity-[0.2] pointer-events-none mix-blend-overlay noise-overlay contrast-125 brightness-125"
             />
 
             <motion.div

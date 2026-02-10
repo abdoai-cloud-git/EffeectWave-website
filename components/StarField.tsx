@@ -11,10 +11,13 @@ const StarField = () => {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    const isMobile = window.innerWidth < 768;
-    const targetFPS = isMobile ? 30 : 60;
-    const frameInterval = 1000 / targetFPS;
+    let isMobile = window.innerWidth < 768;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let targetFPS = prefersReducedMotion ? 20 : isMobile ? 30 : 60;
+    let frameInterval = 1000 / targetFPS;
     let lastFrameTime = 0;
+    let viewportWidth = window.innerWidth;
+    let viewportHeight = window.innerHeight;
 
     let animationFrameId: number;
     let stars: Array<{
@@ -26,25 +29,35 @@ const StarField = () => {
       offset: number;
     }> = [];
 
+    const updatePerformanceProfile = () => {
+      isMobile = viewportWidth < 768;
+      targetFPS = prefersReducedMotion ? 20 : isMobile ? 30 : 60;
+      frameInterval = 1000 / targetFPS;
+    };
+
     const resizeCanvas = () => {
       // Cap pixel ratio at 2 to avoid overdrawing on 3x retina screens
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = window.innerWidth * dpr;
-      canvas.height = window.innerHeight * dpr;
-      ctx.scale(dpr, dpr);
+      viewportWidth = window.innerWidth;
+      viewportHeight = window.innerHeight;
+      updatePerformanceProfile();
+      canvas.width = viewportWidth * dpr;
+      canvas.height = viewportHeight * dpr;
+      // Reset and scale once to avoid transform accumulation on resize.
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       initStars();
     };
 
     const initStars = () => {
-      const baseArea = window.innerWidth * window.innerHeight;
+      const baseArea = viewportWidth * viewportHeight;
       const densityDivisor = isMobile ? 3000 : 1000; // 3x less on mobile
       const count = Math.floor(baseArea / densityDivisor);
       stars = [];
       for (let i = 0; i < count; i++) {
         const isLarge = Math.random() < 0.005;
         stars.push({
-          x: Math.random() * window.innerWidth,
-          y: Math.random() * window.innerHeight,
+          x: Math.random() * viewportWidth,
+          y: Math.random() * viewportHeight,
           size: isLarge ? Math.random() * 1.5 + 1 : Math.random() * 0.8 + 0.2,
           baseOpacity: Math.random() * 0.5 + 0.1,
           speed: Math.random() * 0.2 + 0.05,
@@ -55,13 +68,14 @@ const StarField = () => {
 
     const render = (time: number) => {
       animationFrameId = requestAnimationFrame(render);
+      if (document.hidden) return;
 
       // Throttle FPS on mobile
       const elapsed = time - lastFrameTime;
       if (elapsed < frameInterval) return;
       lastFrameTime = time - (elapsed % frameInterval);
 
-      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      ctx.clearRect(0, 0, viewportWidth, viewportHeight);
       const seconds = time * 0.001;
 
       stars.forEach((star) => {
@@ -75,12 +89,20 @@ const StarField = () => {
       });
     };
 
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        lastFrameTime = 0;
+      }
+    };
+
     window.addEventListener('resize', resizeCanvas);
+    document.addEventListener('visibilitychange', handleVisibilityChange);
     resizeCanvas();
     animationFrameId = requestAnimationFrame(render);
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

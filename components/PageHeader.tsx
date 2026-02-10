@@ -17,7 +17,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, subtitle, description, t
       {/* Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full z-0 pointer-events-none">
          {/* Noise overlay */}
-         <div className="absolute inset-0 opacity-20 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] brightness-150 contrast-150 mix-blend-overlay"></div>
+         <div className="absolute inset-0 opacity-20 noise-overlay brightness-150 contrast-150 mix-blend-overlay"></div>
          {/* Ambient Glow */}
          <div className="absolute top-[-50%] right-[-10%] w-[600px] h-[600px] rounded-full blur-[120px] opacity-15" style={{ backgroundColor: accentColor }}></div>
       </div>
