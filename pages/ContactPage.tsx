@@ -36,7 +36,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ theme, lang }) => {
       subtitle="CONTACT US"
       description={t.description}
     >
-      <section className="px-6 max-w-7xl mx-auto">
+      <section className="px-4 sm:px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-start">
 
           {/* Contact Info */}
@@ -88,7 +88,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ theme, lang }) => {
           </div>
 
           {/* Form */}
-          <div className="bg-onyx/60 backdrop-blur-xl p-8 md:p-12 rounded-[2.5rem] border border-white/10 shadow-2xl relative overflow-hidden">
+          <div className="bg-onyx/60 backdrop-blur-xl p-6 sm:p-8 md:p-12 rounded-[2rem] sm:rounded-[2.5rem] border border-white/10 shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 left-0 w-full h-1" style={{ background: `linear-gradient(90deg, transparent, ${accentColor}, transparent)` }}></div>
 
             <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
@@ -129,7 +129,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ theme, lang }) => {
 
               <button
                 type="button"
-                className="w-full py-4 rounded-xl font-bold text-black flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 hover:brightness-110 mt-4 group"
+                className="w-full py-4 rounded-xl font-bold text-black flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 hover:brightness-110 mt-4 group min-h-[48px]"
                 style={{ backgroundColor: accentColor }}
               >
                 <span>{t.submitButton}</span>

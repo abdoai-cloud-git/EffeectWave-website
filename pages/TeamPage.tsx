@@ -44,14 +44,14 @@ const TeamPage: React.FC<TeamPageProps> = ({ theme, lang }) => {
         ? "فريق يصنع التأثير بعقلية استثمارية. مختصون يعملون معًا لبناء مشاريع ذات قيمة وتأثير مستدام."
         : "A team that creates impact with an investment mindset. Specialists working together to build projects of value and sustainable impact."}
     >
-      <section className="px-6 max-w-7xl mx-auto">
+      <section className="px-4 sm:px-6 max-w-7xl mx-auto">
 
         <div className="mb-16 flex items-center gap-4">
           <h2 className="text-3xl font-heading font-bold text-white">{lang === 'ar' ? 'الفريق القيادي' : 'Leadership Team'}</h2>
           <div className="h-[1px] flex-grow max-w-[100px] bg-white/20"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {teamMembers.map((member, idx) => (
             <motion.div
               key={idx}
@@ -91,7 +91,7 @@ const TeamPage: React.FC<TeamPageProps> = ({ theme, lang }) => {
           ))}
         </div>
 
-        <div className="mt-24 p-10 md:p-16 rounded-[2rem] bg-onyx/30 border border-white/5 text-center backdrop-blur-sm relative overflow-hidden">
+        <div className="mt-16 sm:mt-24 p-6 sm:p-10 md:p-16 rounded-[1.5rem] sm:rounded-[2rem] bg-onyx/30 border border-white/5 text-center backdrop-blur-sm relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
           <p className="text-lg md:text-2xl text-silver/80 max-w-4xl mx-auto leading-relaxed font-light">
             {lang === 'ar'

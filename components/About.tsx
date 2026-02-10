@@ -25,7 +25,7 @@ const About: React.FC<AboutProps> = ({ cards, lang }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.2, duration: 0.6 }}
-              className="bg-gray-surface p-6 md:p-8 rounded-3xl border border-white/5 hover:border-accent/30 transition-colors duration-300 group"
+              className="bg-gray-surface p-5 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl border border-white/5 hover:border-accent/30 transition-colors duration-300 group"
             >
               <div className="w-12 h-12 bg-accent/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent/20 transition-colors duration-300">
                 <card.icon className="text-accent w-6 h-6 transition-colors duration-300" />

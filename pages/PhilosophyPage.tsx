@@ -45,7 +45,7 @@ const PhilosophyPage: React.FC<PhilosophyPageProps> = ({ theme, lang }) => {
       subtitle="OUR PHILOSOPHY"
       description={t.desc}
     >
-      <section className="px-6 max-w-7xl mx-auto space-y-24">
+      <section className="px-4 sm:px-6 max-w-7xl mx-auto space-y-16 sm:space-y-24">
 
         {/* Philosophy Content */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -82,7 +82,7 @@ const PhilosophyPage: React.FC<PhilosophyPageProps> = ({ theme, lang }) => {
               <div className="absolute bottom-1/4 right-1/4 w-32 h-32 rounded-full blur-[60px] bg-white opacity-10"></div>
 
               <div className="relative z-10 text-center px-6">
-                <h3 className="text-5xl md:text-7xl font-english font-bold text-white tracking-tighter opacity-90 drop-shadow-2xl uppercase">
+                <h3 className="text-4xl sm:text-5xl md:text-7xl font-english font-bold text-white tracking-tighter opacity-90 drop-shadow-2xl uppercase">
                   {theme === 'agency' ? 'INSIGHT' : 'QUALITY'}
                   <br />
                   {theme === 'agency' ? 'DRIVEN' : 'FIRST'}
@@ -108,7 +108,7 @@ const PhilosophyPage: React.FC<PhilosophyPageProps> = ({ theme, lang }) => {
               {/* Side Effect */}
               <motion.div
                 whileHover={{ y: -5 }}
-                className="bg-onyx/50 backdrop-blur-md p-10 rounded-[2rem] border border-white/5 overflow-hidden relative group"
+                className="bg-onyx/50 backdrop-blur-md p-6 sm:p-8 md:p-10 rounded-[1.5rem] sm:rounded-[2rem] border border-white/5 overflow-hidden relative group"
               >
                 <div className="absolute top-0 right-0 w-full h-1 bg-gradient-to-r from-blue-500 to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
                 <div className="flex items-center justify-between mb-8">
@@ -125,7 +125,7 @@ const PhilosophyPage: React.FC<PhilosophyPageProps> = ({ theme, lang }) => {
               {/* Rowad */}
               <motion.div
                 whileHover={{ y: -5 }}
-                className="bg-onyx/50 backdrop-blur-md p-10 rounded-[2rem] border border-white/5 overflow-hidden relative group"
+                className="bg-onyx/50 backdrop-blur-md p-6 sm:p-8 md:p-10 rounded-[1.5rem] sm:rounded-[2rem] border border-white/5 overflow-hidden relative group"
               >
                 <div className="absolute top-0 right-0 w-full h-1 bg-gradient-to-r from-emerald-500 to-transparent opacity-50 group-hover:opacity-100 transition-opacity"></div>
                 <div className="flex items-center justify-between mb-8">

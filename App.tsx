@@ -132,7 +132,7 @@ function AppContent() {
 
       {/* Header */}
       <header
-        className={`fixed top-0 left-0 right-0 z-50 px-6 py-4 flex justify-between items-center transition-all duration-700 cubic-bezier(0.4, 0, 0.2, 1) bg-gradient-to-b from-black/90 to-transparent backdrop-blur-sm border-b border-white/5 ${isNavbarVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
+        className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 py-3 sm:py-4 flex justify-between items-center transition-all duration-700 cubic-bezier(0.4, 0, 0.2, 1) bg-gradient-to-b from-black/90 to-transparent backdrop-blur-sm border-b border-white/5 ${isNavbarVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
           }`}
       >
         <Link to="/" className="flex items-center gap-4 group">
@@ -147,14 +147,14 @@ function AppContent() {
           <button
             onClick={toggleLang}
             aria-label={lang === 'ar' ? 'Switch to English' : 'التغيير للغة العربية'}
-            className="px-3 py-1 rounded-full border border-white/10 bg-white/5 text-[10px] font-bold hover:bg-accent hover:text-black transition-all duration-300 tracking-widest font-english"
+            className="px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] font-bold hover:bg-accent hover:text-black transition-all duration-300 tracking-widest font-english min-w-[40px] min-h-[36px] flex items-center justify-center"
           >
             {lang === 'ar' ? 'EN' : 'AR'}
           </button>
 
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-white p-2 hover:text-accent transition-colors block z-50 relative focus:outline-none"
+            className="text-white p-2 hover:text-accent transition-colors block z-50 relative focus:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
             {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
           </button>
@@ -166,7 +166,7 @@ function AppContent() {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -10, scale: 0.95 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="absolute top-full left-0 mt-4 w-56 bg-black/80 backdrop-blur-3xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-40 origin-top-left"
+                className="absolute top-full left-0 sm:left-auto mt-4 w-[calc(100vw-2rem)] sm:w-56 bg-black/80 backdrop-blur-3xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-40 origin-top-left"
               >
                 <div className="py-2">
                   <Link
@@ -227,7 +227,7 @@ function AppContent() {
 
       {/* Bottom Navigation / Theme Switcher */}
       {/* Force LTR direction for this component to ensure Media/Production is Left and Marketing/Agency is Right */}
-      <div className="fixed bottom-10 left-0 right-0 z-50 flex flex-col items-center gap-1 pointer-events-none" dir="ltr">
+      <div className="fixed bottom-6 sm:bottom-10 left-0 right-0 z-50 flex flex-col items-center gap-1 pointer-events-none" dir="ltr">
         <div className="pointer-events-auto flex flex-col items-center gap-1">
 
           {/* Labels Row */}
@@ -305,7 +305,7 @@ function AppContent() {
       <AnimatePresence mode="wait">
         <motion.main
           key={theme + location.pathname} // Key change triggers the animation
-          className="relative z-10 pb-12 md:pb-24 min-h-screen"
+          className="relative z-10 pb-24 sm:pb-28 md:pb-32 min-h-screen"
           variants={pageVariants}
           initial="initial"
           animate="in"

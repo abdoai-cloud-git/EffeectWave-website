@@ -84,7 +84,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ theme, lang }) => {
       subtitle="ABOUT US"
       description={pageDesc}
     >
-      <section className="px-6 max-w-7xl mx-auto">
+      <section className="px-4 sm:px-6 max-w-7xl mx-auto">
 
         {/* Main Introduction Text */}
         <div className="mb-20">
@@ -94,7 +94,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ theme, lang }) => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
-            className="text-xl md:text-3xl leading-relaxed text-silver/90 font-heading font-bold max-w-5xl"
+            className="text-lg sm:text-xl md:text-3xl leading-relaxed text-silver/90 font-heading font-bold max-w-5xl"
           >
             "{selectedContent.intro}"
           </motion.p>
@@ -109,7 +109,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ theme, lang }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="bg-onyx/40 backdrop-blur-md p-8 md:p-12 rounded-[2.5rem] border border-white/5 relative overflow-hidden group hover:border-white/10 transition-colors duration-500"
+            className="bg-onyx/40 backdrop-blur-md p-6 sm:p-8 md:p-12 rounded-[2rem] sm:rounded-[2.5rem] border border-white/5 relative overflow-hidden group hover:border-white/10 transition-colors duration-500"
           >
             <div className="absolute -right-10 -top-10 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-500 transform group-hover:scale-110">
               <Eye size={250} />
@@ -136,7 +136,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ theme, lang }) => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="bg-onyx/40 backdrop-blur-md p-8 md:p-12 rounded-[2.5rem] border border-white/5 relative overflow-hidden group hover:border-white/10 transition-colors duration-500"
+            className="bg-onyx/40 backdrop-blur-md p-6 sm:p-8 md:p-12 rounded-[2rem] sm:rounded-[2.5rem] border border-white/5 relative overflow-hidden group hover:border-white/10 transition-colors duration-500"
           >
             <div className="absolute -right-10 -top-10 opacity-[0.03] group-hover:opacity-[0.08] transition-opacity duration-500 transform group-hover:scale-110">
               <Target size={250} />
