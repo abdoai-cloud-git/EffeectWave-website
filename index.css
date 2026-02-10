@@ -83,6 +83,19 @@ h6 {
   backface-visibility: hidden;
 }
 
+/* Shared local noise texture (replaces external request) */
+.noise-overlay {
+  background-image: url('/noise.svg');
+  background-repeat: repeat;
+  background-size: 180px 180px;
+}
+
+/* Skip heavy rendering for below-the-fold sections */
+.cv-auto {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 1000px;
+}
+
 /* Respect user preference for reduced motion */
 @media (prefers-reduced-motion: reduce) {
 

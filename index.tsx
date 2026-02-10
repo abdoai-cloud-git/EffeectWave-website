@@ -13,7 +13,6 @@ document.documentElement.dir = 'rtl';
 document.documentElement.lang = 'ar';
 
 const root = ReactDOM.createRoot(rootElement);
-console.log("Root element found, mounting app...");
 root.render(
   <React.StrictMode>
     <App />
