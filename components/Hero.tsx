@@ -42,74 +42,99 @@ const Hero: React.FC<HeroProps> = ({ badge, titleLine1, titleLine2, description,
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden px-6 pt-32 pb-32 md:pt-20 md:pb-20">
 
-      {/* --- OPTIMIZED CINEMATIC BACKGROUND --- */}
-      {/* All effects use CSS gradients + opacity instead of blur filters for 60fps */}
+      {/* --- CINEMATIC VOLUMETRIC SPOTLIGHT (SVG-based) --- */}
+      {/* Uses SVG feGaussianBlur for truly soft, feathered cone edges */}
 
-      {/* 1. VOLUMETRIC GOD RAY — CSS radial gradient, NO blur filter */}
+      {/* SVG SPOTLIGHT — the main god ray cone */}
+      <div className="absolute inset-0 z-0 pointer-events-none gpu-accelerate">
+        <svg
+          className="absolute top-0 left-0 w-full h-full"
+          viewBox="0 0 1920 1080"
+          preserveAspectRatio="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            {/* Heavy blur for outer atmospheric glow */}
+            <filter id="spotlight-blur-outer" x="-50%" y="-20%" width="200%" height="140%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="60" />
+            </filter>
+            {/* Medium blur for the main cone */}
+            <filter id="spotlight-blur-mid" x="-30%" y="-10%" width="160%" height="120%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="35" />
+            </filter>
+            {/* Light blur for the bright core */}
+            <filter id="spotlight-blur-core" x="-20%" y="-10%" width="140%" height="120%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="18" />
+            </filter>
+            {/* Vertical fade mask — light fades as it travels down */}
+            <linearGradient id="spotlight-fade" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="white" stopOpacity="1" />
+              <stop offset="30%" stopColor="white" stopOpacity="0.6" />
+              <stop offset="60%" stopColor="white" stopOpacity="0.2" />
+              <stop offset="85%" stopColor="white" stopOpacity="0.05" />
+              <stop offset="100%" stopColor="white" stopOpacity="0" />
+            </linearGradient>
+            <mask id="spotlight-mask">
+              <rect x="0" y="0" width="1920" height="1080" fill="url(#spotlight-fade)" />
+            </mask>
+          </defs>
+
+          {/* Layer 1: Wide atmospheric outer cone — very soft */}
+          <polygon
+            points="810,0 1110,0 1650,900 270,900"
+            fill="rgba(255,255,255,0.12)"
+            filter="url(#spotlight-blur-outer)"
+            mask="url(#spotlight-mask)"
+          />
+
+          {/* Layer 2: Main cone body — medium intensity */}
+          <polygon
+            points="870,0 1050,0 1440,850 480,850"
+            fill="rgba(255,255,255,0.18)"
+            filter="url(#spotlight-blur-mid)"
+            mask="url(#spotlight-mask)"
+          />
+
+          {/* Layer 3: Bright inner core — narrow, intense */}
+          <polygon
+            points="910,0 1010,0 1250,750 670,750"
+            fill="rgba(255,255,255,0.30)"
+            filter="url(#spotlight-blur-core)"
+            mask="url(#spotlight-mask)"
+          />
+
+          {/* Layer 4: Hot center strip — brightest at the very top */}
+          <polygon
+            points="940,0 980,0 1100,500 820,500"
+            fill="rgba(255,255,255,0.4)"
+            filter="url(#spotlight-blur-core)"
+            mask="url(#spotlight-mask)"
+          />
+
+          {/* Light source glow at the very top */}
+          <ellipse
+            cx="960" cy="0" rx="80" ry="30"
+            fill="rgba(255,255,255,0.5)"
+            filter="url(#spotlight-blur-mid)"
+          />
+        </svg>
+      </div>
+
+      {/* LIGHT POOL — radial glow where the spotlight hits the logo area */}
       <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[120vw] h-[120vh] origin-top z-0 pointer-events-none gpu-accelerate"
+        className="absolute top-[30%] left-1/2 -translate-x-1/2 w-[80vw] h-[60vh] z-0 pointer-events-none gpu-accelerate"
         style={{
-          background: `radial-gradient(ellipse 80% 90% at 50% 0%, 
-            rgba(255,255,255,0.12) 0%, 
-            rgba(255,255,255,0.04) 30%, 
-            rgba(255,255,255,0.01) 60%, 
+          background: `radial-gradient(ellipse 50% 35% at 50% 40%,
+            rgba(255,255,255,0.07) 0%,
+            rgba(255,255,255,0.03) 40%,
             transparent 100%
           )`,
-          opacity: 0.9,
         }}
       />
 
-      {/* 2. CORE BEAM — Smaller, softer via gradient, NO blur */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[80vw] h-[100vh] origin-top z-0 pointer-events-none gpu-accelerate"
-        style={{
-          background: `radial-gradient(ellipse 60% 80% at 50% 0%, 
-            rgba(255,255,255,0.18) 0%, 
-            rgba(255,255,255,0.05) 40%, 
-            transparent 75%
-          )`,
-        }}
-      />
-
-      {/* 3. THEME ACCENT GLOW — CSS animation via keyframes instead of framer-motion */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[100vw] h-[90vh] z-0 pointer-events-none gpu-accelerate"
-        style={{
-          background: `radial-gradient(ellipse 70% 70% at 50% 0%, ${accentColor}22 0%, transparent 70%)`,
-          animation: 'accentPulse 5s ease-in-out infinite',
-        }}
-      />
-
-      {/* 4. VIGNETTE & DEPTH — lightweight CSS only */}
+      {/* VIGNETTE & DEPTH — keeps edges cinematic */}
       <div className="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent z-0 pointer-events-none" />
-      <div className="absolute inset-0 shadow-[inset_0_0_150px_rgba(0,0,0,0.7)] z-0 pointer-events-none" />
-
-      {/* 5. FLOATING BEAMS — CSS-animated via keyframes, not framer-motion loops */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden gpu-accelerate">
-        {[0, 1, 2, 3, 4].map((i) => {
-          const positions = [
-            { left: '15%', top: '25%', rot: -15 },
-            { left: '70%', top: '40%', rot: 20 },
-            { left: '40%', top: '60%', rot: -8 },
-            { left: '80%', top: '20%', rot: 12 },
-            { left: '25%', top: '70%', rot: -25 },
-          ];
-          const p = positions[i];
-          return (
-            <div
-              key={i}
-              className="absolute w-24 sm:w-32 h-[2px] opacity-0 gpu-accelerate"
-              style={{
-                left: p.left,
-                top: p.top,
-                transform: `rotate(${p.rot}deg)`,
-                background: `linear-gradient(to right, transparent, ${accentColor}88, transparent)`,
-                animation: `beamFloat ${6 + i * 1.2}s ease-in-out ${i * 1.5}s infinite`,
-              }}
-            />
-          );
-        })}
-      </div>
+      <div className="absolute inset-0 shadow-[inset_0_0_250px_rgba(0,0,0,0.85)] z-0 pointer-events-none" />
 
       {/* --- CONTENT CENTER --- */}
       <motion.div
@@ -124,11 +149,11 @@ const Hero: React.FC<HeroProps> = ({ badge, titleLine1, titleLine2, description,
           variants={itemVariants}
           className="mb-8 relative"
         >
-          {/* Soft glow behind logo — CSS gradient, no blur filter */}
+          {/* Soft accent glow behind logo */}
           <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[180%] h-[180%] rounded-full pointer-events-none gpu-accelerate"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] rounded-full pointer-events-none gpu-accelerate"
             style={{
-              background: 'radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.08) 40%, transparent 70%)',
+              background: `radial-gradient(circle, ${accentColor}20 0%, ${accentColor}0a 40%, transparent 70%)`,
             }}
           />
 
@@ -138,8 +163,16 @@ const Hero: React.FC<HeroProps> = ({ badge, titleLine1, titleLine2, description,
         {/* ENGLISH BRAND NAME */}
         <motion.h1
           variants={itemVariants}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-english font-bold text-white tracking-widest leading-none mb-3 drop-shadow-lg"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-english font-bold text-white tracking-widest leading-none mb-3 drop-shadow-lg relative"
         >
+          {/* Accent glow orb near WAVE */}
+          <span
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-[-20%] w-20 h-20 rounded-full pointer-events-none gpu-accelerate"
+            style={{
+              background: `radial-gradient(circle, ${accentColor}1a 0%, ${accentColor}08 50%, transparent 100%)`,
+              filter: 'blur(10px)',
+            }}
+          />
           EFFECT <span style={{ color: accentColor }}>WAVE</span>
         </motion.h1>
 

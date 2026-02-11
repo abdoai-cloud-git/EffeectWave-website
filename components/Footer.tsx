@@ -20,26 +20,29 @@ const Footer: React.FC<FooterProps> = ({ description, lang }) => {
             {description}
           </p>
           <div className="flex gap-4">
-            {([Instagram, Facebook, Linkedin] as const).map((Icon, i) => {
-              const labels = ['Instagram', 'Facebook', 'LinkedIn'];
-              return (
-                <a
-                  key={i}
-                  href="#"
-                  aria-label={labels[i]}
-                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-black transition-colors duration-300"
-                >
-                  <Icon size={20} />
-                </a>
-              );
-            })}
+            {([
+              { Icon: Instagram, label: 'Instagram', href: 'https://www.instagram.com/effectwave_ly' },
+              { Icon: Facebook, label: 'Facebook', href: 'https://www.facebook.com/share/1DWwkZR1w9/' },
+              { Icon: Linkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/company/effect-wave/' },
+            ] as const).map(({ Icon, label, href }, i) => (
+              <a
+                key={i}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-accent hover:text-black transition-colors duration-300"
+              >
+                <Icon size={20} />
+              </a>
+            ))}
           </div>
         </div>
 
         {/* Contact Column */}
         <div className="col-span-1 lg:col-span-2 flex flex-col justify-center">
           <div className="grid gap-6">
-            <a href="mailto:info@effectwave.ly" className="flex items-center gap-4 group">
+            <a href="mailto:info@effectwaveco.com" className="flex items-center gap-4 group">
               <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-accent/10 group-hover:text-accent transition-colors duration-300">
                 <Mail />
               </div>
@@ -47,7 +50,7 @@ const Footer: React.FC<FooterProps> = ({ description, lang }) => {
                 <div className="text-xs text-silver/50 uppercase tracking-wider mb-1">
                   {lang === 'ar' ? 'بريدنا الإلكتروني' : 'Email Us'}
                 </div>
-                <div className="text-xl text-white font-english group-hover:text-accent transition-colors duration-300">info@effectwave.ly</div>
+                <div className="text-xl text-white font-english group-hover:text-accent transition-colors duration-300">info@effectwaveco.com</div>
               </div>
             </a>
 
@@ -66,7 +69,7 @@ const Footer: React.FC<FooterProps> = ({ description, lang }) => {
               </div>
             </div>
 
-            <a href="https://www.effectwave.ly" className="flex items-center gap-4 group">
+            <a href="https://www.effectwaveco.com" className="flex items-center gap-4 group">
               <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-accent/10 group-hover:text-accent transition-colors duration-300">
                 <Globe />
               </div>
@@ -74,7 +77,7 @@ const Footer: React.FC<FooterProps> = ({ description, lang }) => {
                 <div className="text-xs text-silver/50 uppercase tracking-wider mb-1">
                   {lang === 'ar' ? 'موقعنا الإلكتروني' : 'Visit Us'}
                 </div>
-                <div className="text-xl text-white font-english group-hover:text-accent transition-colors duration-300">www.effectwave.ly</div>
+                <div className="text-xl text-white font-english group-hover:text-accent transition-colors duration-300">www.effectwaveco.com</div>
               </div>
             </a>
           </div>

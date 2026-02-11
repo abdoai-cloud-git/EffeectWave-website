@@ -1,12 +1,18 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Linkedin, Twitter, Mail, ExternalLink } from 'lucide-react';
+import { Linkedin, Instagram, Phone } from 'lucide-react';
+
+interface SocialLink {
+  type: 'instagram' | 'linkedin' | 'phone';
+  url: string;
+}
 
 interface TeamMemberProps {
   name: string;
   role: string;
   image: string;
+  socials: SocialLink[];
   index: number;
 }
 
@@ -17,7 +23,15 @@ interface TeamProps {
   lang: 'ar' | 'en';
 }
 
-const TeamMember: React.FC<TeamMemberProps> = ({ name, role, image, index }) => {
+const socialIcon = (type: SocialLink['type']) => {
+  switch (type) {
+    case 'instagram': return <Instagram size={14} />;
+    case 'linkedin': return <Linkedin size={14} />;
+    case 'phone': return <Phone size={14} />;
+  }
+};
+
+const TeamMember: React.FC<TeamMemberProps> = ({ name, role, image, socials, index }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -32,11 +46,11 @@ const TeamMember: React.FC<TeamMemberProps> = ({ name, role, image, index }) => 
           src={image}
           alt={name}
           loading="lazy"
-          className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+          className="w-full h-full object-cover object-top grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
         />
 
         {/* Overlay Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-80 group-hover:opacity-70 transition-opacity" />
 
         {/* Floating Info */}
         <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
@@ -48,22 +62,20 @@ const TeamMember: React.FC<TeamMemberProps> = ({ name, role, image, index }) => 
           </h3>
 
           <div className="flex gap-3 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 delay-100">
-            <button className="w-8 h-8 rounded-full bg-accent text-black flex items-center justify-center hover:bg-white transition-colors">
-              <Linkedin size={14} />
-            </button>
-            <button className="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-accent hover:text-black transition-colors">
-              <Twitter size={14} />
-            </button>
-            <button className="w-8 h-8 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-accent hover:text-black transition-colors">
-              <Mail size={14} />
-            </button>
-          </div>
-        </div>
-
-        {/* Decorative Corner */}
-        <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <div className="p-2 bg-accent rounded-full text-black transition-colors duration-300">
-            <ExternalLink size={14} />
+            {socials.map((social, i) => (
+              <a
+                key={i}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 ${i === 0
+                    ? 'bg-accent text-black hover:bg-white'
+                    : 'bg-white/10 text-white hover:bg-accent hover:text-black'
+                  }`}
+              >
+                {socialIcon(social.type)}
+              </a>
+            ))}
           </div>
         </div>
       </div>
@@ -72,26 +84,44 @@ const TeamMember: React.FC<TeamMemberProps> = ({ name, role, image, index }) => 
 };
 
 const Team: React.FC<TeamProps> = ({ subtitle, title, description, lang }) => {
-  const team = [
-    {
-      name: lang === 'ar' ? "سامي التاجوري" : "Sami El Tajouri",
-      role: lang === 'ar' ? "المؤسس والمدير التنفيذي" : "Founder & CEO",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800"
-    },
+  const team: Omit<TeamMemberProps, 'index'>[] = [
     {
       name: lang === 'ar' ? "محمد بن ناصر" : "Mohamed Ben Nasser",
+      role: lang === 'ar' ? "المدير التنفيذي" : "CEO",
+      image: "/assets/Media/team/محمد رمضان بن ناصر المدير التنفيذي للشركة.jpg",
+      socials: [
+        { type: 'instagram', url: 'https://www.instagram.com/mohamed.bennaser.official' },
+        { type: 'phone', url: 'tel:+21892-8701432' },
+      ]
+    },
+    {
+      name: lang === 'ar' ? "سامي التاجوري" : "Sami Al-Tajouri",
       role: lang === 'ar' ? "المدير العام" : "General Manager",
-      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800"
+      image: "/assets/Media/team/سامي التاجوري - مدير عام.jpg",
+      socials: [
+        { type: 'instagram', url: 'https://www.instagram.com/sami_altajouri' },
+        { type: 'linkedin', url: 'https://www.linkedin.com/in/sami-altajuory' },
+        { type: 'phone', url: 'tel:+218944689827' },
+      ]
     },
     {
       name: lang === 'ar' ? "أحمد عمار" : "Ahmed Ammar",
-      role: lang === 'ar' ? "مدير العلاقات" : "Relations Manager",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=800"
+      role: lang === 'ar' ? "مدير العلاقات العامة" : "Public Relations Manager",
+      image: "/assets/Media/team/أحمد عمار-مدير العلاقات العامة.jpg",
+      socials: [
+        { type: 'instagram', url: 'https://www.instagram.com/ahmedbnamarr' },
+        { type: 'linkedin', url: 'https://www.linkedin.com/in/ahmedamarr' },
+        { type: 'phone', url: 'tel:+905338693063' },
+      ]
     },
     {
-      name: lang === 'ar' ? "المدير الإبداعي" : "Creative Director",
-      role: lang === 'ar' ? "Creative Director" : "Creative Director",
-      image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&q=80&w=800"
+      name: lang === 'ar' ? "دانيا الفرجاني" : "Dania Fergiani",
+      role: lang === 'ar' ? "المدير الإبداعي" : "Creative Director",
+      image: "/assets/Media/team/المدير الابداعي-دانيا الفرجاني.jpeg",
+      socials: [
+        { type: 'instagram', url: 'https://www.instagram.com/dfergiani' },
+        { type: 'phone', url: 'tel:+905050762000' },
+      ]
     }
   ];
 

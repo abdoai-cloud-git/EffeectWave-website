@@ -6,6 +6,8 @@ import ServicesGrid from '../components/ServicesGrid';
 import About from '../components/About';
 import WhyUs from '../components/WhyUs';
 import Team from '../components/Team';
+import PlatformsSection from '../components/PlatformsSection';
+import ClientsSection from '../components/ClientsSection';
 
 import {
   Users, Sparkles, Layers,
@@ -311,6 +313,11 @@ const HomePage: React.FC<HomePageProps> = ({ theme, lang }) => {
         />
       </div>
 
+      <div id="platforms">
+        <PlatformsSection theme={theme} lang={lang} />
+      </div>
+
+
       <div id="why-us">
         <WhyUs
           lang={lang}
@@ -327,6 +334,10 @@ const HomePage: React.FC<HomePageProps> = ({ theme, lang }) => {
             ? "مجموعة من الشغوفين المبدعين الذين يجمعهم هدف واحد: تحويل أفكارك إلى واقع استثنائي."
             : "A group of passionate creators united by one goal: transforming your ideas into extraordinary reality."}
         />
+      </div>
+
+      <div id="clients">
+        <ClientsSection theme={theme} lang={lang} />
       </div>
     </>
   );
