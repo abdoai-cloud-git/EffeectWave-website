@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import PageLayout from '../components/PageLayout';
 import { Mail, Phone, Globe, ArrowRight, ArrowUpLeft } from 'lucide-react';
 
@@ -10,6 +10,26 @@ interface ContactPageProps {
 
 const ContactPage: React.FC<ContactPageProps> = ({ theme, lang }) => {
   const accentColor = theme === 'agency' ? '#ebe125' : '#b20600';
+
+  // Form state
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Create mailto link with form data
+    const subject = encodeURIComponent(`Contact from ${formData.name}`);
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    );
+
+    // Open user's email client
+    window.location.href = `mailto:info@effectwaveco.com?subject=${subject}&body=${body}`;
+  };
 
   const t = {
     title: lang === 'ar' ? "تواصل معنا" : "Contact Us",
@@ -61,24 +81,24 @@ const ContactPage: React.FC<ContactPageProps> = ({ theme, lang }) => {
                   </div>
                 </a>
 
-                <a href="mailto:info@effectwave.ly" className={`flex items-center gap-6 group p-4 rounded-2xl hover:bg-white/5 transition-colors duration-300 ${lang === 'ar' ? '-mr-4' : '-ml-4'}`}>
+                <a href="mailto:info@effectwaveco.com" className={`flex items-center gap-6 group p-4 rounded-2xl hover:bg-white/5 transition-colors duration-300 ${lang === 'ar' ? '-mr-4' : '-ml-4'}`}>
                   <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center shrink-0 border border-white/5 group-hover:border-accent/50 transition-colors duration-300">
                     <Mail style={{ color: accentColor }} className="w-6 h-6" />
                   </div>
                   <div>
                     <h3 className="text-xs text-silver/40 uppercase tracking-widest mb-2 font-english">{t.email}</h3>
-                    <p className="text-xl font-english text-white group-hover:text-accent transition-colors">info@effectwave.ly</p>
+                    <p className="text-xl font-english text-white group-hover:text-accent transition-colors">info@effectwaveco.com</p>
                   </div>
                 </a>
 
-                <a href="https://www.effectwave.ly" target="_blank" rel="noreferrer" className={`flex items-center gap-6 group p-4 rounded-2xl hover:bg-white/5 transition-colors duration-300 ${lang === 'ar' ? '-mr-4' : '-ml-4'}`}>
+                <a href="https://www.effectwaveco.com" target="_blank" rel="noreferrer" className={`flex items-center gap-6 group p-4 rounded-2xl hover:bg-white/5 transition-colors duration-300 ${lang === 'ar' ? '-mr-4' : '-ml-4'}`}>
                   <div className="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center shrink-0 border border-white/5 group-hover:border-accent/50 transition-colors duration-300">
                     <Globe style={{ color: accentColor }} className="w-6 h-6" />
                   </div>
                   <div>
                     <h3 className="text-xs text-silver/40 uppercase tracking-widest mb-2 font-english">{t.website}</h3>
                     <div className="flex items-center gap-2">
-                      <p className="text-xl font-english text-white group-hover:text-accent transition-colors">www.effectwave.ly</p>
+                      <p className="text-xl font-english text-white group-hover:text-accent transition-colors">www.effectwaveco.com</p>
                       <ArrowUpLeft size={16} className={`text-silver/50 group-hover:text-accent transition-colors ${lang === 'en' ? 'rotate-90' : ''}`} />
                     </div>
                   </div>
@@ -96,11 +116,14 @@ const ContactPage: React.FC<ContactPageProps> = ({ theme, lang }) => {
               <span className="h-[1px] flex-grow bg-white/10"></span>
             </h3>
 
-            <form className="space-y-6 relative z-10">
+            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
               <div className="space-y-2">
                 <label className={`text-sm text-silver/60 ${lang === 'ar' ? 'mr-1' : 'ml-1'}`}>{t.nameLabel}</label>
                 <input
                   type="text"
+                  required
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-white/20 focus:outline-none focus:border-accent focus:bg-white/5 transition-all duration-300"
                   style={{ '--color-accent': accentColor } as any}
                   placeholder={t.namePlaceholder}
@@ -111,6 +134,9 @@ const ContactPage: React.FC<ContactPageProps> = ({ theme, lang }) => {
                 <label className={`text-sm text-silver/60 ${lang === 'ar' ? 'mr-1' : 'ml-1'}`}>{t.emailLabel}</label>
                 <input
                   type="email"
+                  required
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-white/20 focus:outline-none focus:border-accent focus:bg-white/5 transition-all duration-300"
                   style={{ '--color-accent': accentColor } as any}
                   placeholder="name@example.com"
@@ -121,6 +147,9 @@ const ContactPage: React.FC<ContactPageProps> = ({ theme, lang }) => {
                 <label className={`text-sm text-silver/60 ${lang === 'ar' ? 'mr-1' : 'ml-1'}`}>{t.messageLabel}</label>
                 <textarea
                   rows={4}
+                  required
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="w-full bg-black/40 border border-white/10 rounded-xl px-5 py-4 text-white placeholder-white/20 focus:outline-none focus:border-accent focus:bg-white/5 transition-all duration-300 resize-none"
                   style={{ '--color-accent': accentColor } as any}
                   placeholder={t.messagePlaceholder}
@@ -128,7 +157,7 @@ const ContactPage: React.FC<ContactPageProps> = ({ theme, lang }) => {
               </div>
 
               <button
-                type="button"
+                type="submit"
                 className="w-full py-4 rounded-xl font-bold text-black flex items-center justify-center gap-3 transition-all duration-300 active:scale-95 hover:brightness-110 mt-4 group min-h-[48px]"
                 style={{ backgroundColor: accentColor }}
               >

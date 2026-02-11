@@ -58,15 +58,6 @@ const ServiceCard: React.FC<ServiceData & { index: number; lang: 'ar' | 'en' }> 
         </ul>
       </div>
 
-      {/* Decorative Arrow */}
-      <div className="relative z-10 flex justify-end mt-auto">
-        <motion.div
-          className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-accent group-hover:border-accent group-hover:text-black transition-all duration-300"
-        >
-          <ArrowUpLeft className="w-6 h-6" />
-        </motion.div>
-      </div>
-
       {/* Background Decor */}
       <div className="absolute -bottom-12 -left-12 text-white/5 pointer-events-none transform rotate-12 scale-150 group-hover:scale-125 transition-transform duration-700">
         <Icon className="w-64 h-64 opacity-[0.03]" strokeWidth={0.5} />

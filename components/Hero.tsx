@@ -272,15 +272,16 @@ const Hero: React.FC<HeroProps> = ({ badge, titleLine1, titleLine2, description,
             {badge}
           </p>
 
-          <button
-            className={`px-8 py-3 rounded-full ${buttonTextColor} font-bold text-xs md:text-sm tracking-widest transition-all duration-300 hover:scale-105 hover:bg-white hover:text-black hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] min-h-[44px]`}
+          <a
+            href="/#/contact"
+            className={`inline-block px-8 py-3 rounded-full ${buttonTextColor} font-bold text-xs md:text-sm tracking-widest transition-all duration-300 hover:scale-105 hover:bg-white hover:text-black hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] min-h-[44px] flex items-center justify-center`}
             style={{
               backgroundColor: accentColor,
               boxShadow: `0 0 20px ${accentColor}40`
             }}
           >
             {buttonText}
-          </button>
+          </a>
         </motion.div>
       </motion.div>
 
