@@ -35,24 +35,24 @@ const TeamPage: React.FC<TeamPageProps> = ({ theme, lang }) => {
 
   const teamMembers: TeamMember[] = [
     {
-      name: lang === 'ar' ? "محمد بن ناصر" : "Mohamed Ben Nasser",
-      title: lang === 'ar' ? "المدير التنفيذي" : "CEO",
-      englishTitle: "CEO",
-      image: "/assets/Media/team/محمد رمضان بن ناصر المدير التنفيذي للشركة.jpg",
-      socials: [
-        { type: 'instagram', url: 'https://www.instagram.com/mohamed.bennaser.official' },
-        { type: 'phone', url: 'tel:+21892-8701432' },
-      ]
-    },
-    {
       name: lang === 'ar' ? "سامي التاجوري" : "Sami Al-Tajouri",
-      title: lang === 'ar' ? "المدير العام" : "General Manager",
-      englishTitle: "General Manager",
+      title: lang === 'ar' ? "المؤسس والمدير التنفيذي" : "Founder & CEO",
+      englishTitle: "Founder & CEO",
       image: "/assets/Media/team/سامي التاجوري - مدير عام.jpg",
       socials: [
         { type: 'instagram', url: 'https://www.instagram.com/sami_altajouri' },
         { type: 'linkedin', url: 'https://www.linkedin.com/in/sami-altajuory' },
         { type: 'phone', url: 'tel:+218944689827' },
+      ]
+    },
+    {
+      name: lang === 'ar' ? "محمد بن ناصر" : "Mohamed Ben Nasser",
+      title: lang === 'ar' ? "المدير العام" : "Managing Director",
+      englishTitle: "Managing Director",
+      image: "/assets/Media/team/محمد رمضان بن ناصر المدير التنفيذي للشركة.jpg",
+      socials: [
+        { type: 'instagram', url: 'https://www.instagram.com/mohamed.bennaser.official' },
+        { type: 'phone', url: 'tel:+21892-8701432' },
       ]
     },
     {

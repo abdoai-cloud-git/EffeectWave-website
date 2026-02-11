@@ -69,8 +69,8 @@ const TeamMember: React.FC<TeamMemberProps> = ({ name, role, image, socials, ind
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors duration-300 ${i === 0
-                    ? 'bg-accent text-black hover:bg-white'
-                    : 'bg-white/10 text-white hover:bg-accent hover:text-black'
+                  ? 'bg-accent text-black hover:bg-white'
+                  : 'bg-white/10 text-white hover:bg-accent hover:text-black'
                   }`}
               >
                 {socialIcon(social.type)}
@@ -86,22 +86,22 @@ const TeamMember: React.FC<TeamMemberProps> = ({ name, role, image, socials, ind
 const Team: React.FC<TeamProps> = ({ subtitle, title, description, lang }) => {
   const team: Omit<TeamMemberProps, 'index'>[] = [
     {
-      name: lang === 'ar' ? "محمد بن ناصر" : "Mohamed Ben Nasser",
-      role: lang === 'ar' ? "المدير التنفيذي" : "CEO",
-      image: "/assets/Media/team/محمد رمضان بن ناصر المدير التنفيذي للشركة.jpg",
-      socials: [
-        { type: 'instagram', url: 'https://www.instagram.com/mohamed.bennaser.official' },
-        { type: 'phone', url: 'tel:+21892-8701432' },
-      ]
-    },
-    {
       name: lang === 'ar' ? "سامي التاجوري" : "Sami Al-Tajouri",
-      role: lang === 'ar' ? "المدير العام" : "General Manager",
+      role: lang === 'ar' ? "المؤسس والمدير التنفيذي" : "Founder & CEO",
       image: "/assets/Media/team/سامي التاجوري - مدير عام.jpg",
       socials: [
         { type: 'instagram', url: 'https://www.instagram.com/sami_altajouri' },
         { type: 'linkedin', url: 'https://www.linkedin.com/in/sami-altajuory' },
         { type: 'phone', url: 'tel:+218944689827' },
+      ]
+    },
+    {
+      name: lang === 'ar' ? "محمد بن ناصر" : "Mohamed Ben Nasser",
+      role: lang === 'ar' ? "المدير العام" : "Managing Director",
+      image: "/assets/Media/team/محمد رمضان بن ناصر المدير التنفيذي للشركة.jpg",
+      socials: [
+        { type: 'instagram', url: 'https://www.instagram.com/mohamed.bennaser.official' },
+        { type: 'phone', url: 'tel:+21892-8701432' },
       ]
     },
     {

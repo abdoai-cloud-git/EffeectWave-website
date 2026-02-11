@@ -12,24 +12,30 @@ const PlatformsSection: React.FC<PlatformsSectionProps> = ({ theme, lang }) => {
 
     const platforms = [
         {
-            name: 'روااد',
-            nameEn: 'Rawad',
-            description: lang === 'ar'
-                ? 'منصة رقمية متكاملة لإدارة المحتوى والتسويق الإلكتروني'
-                : 'Integrated digital platform for content management and digital marketing',
-            url: 'https://rawad.com', // Replace with actual URL
-            logo: '/logos/clients/04.png',
-            gradient: 'from-blue-600 to-cyan-500'
-        },
-        {
             name: 'Side Effect',
             nameEn: 'Side Effect',
             description: lang === 'ar'
-                ? 'استوديو إنتاج إعلامي متخصص في المحتوى الإبداعي والمؤثرات البصرية'
-                : 'Media production studio specialized in creative content and visual effects',
-            url: 'https://sideeffect.com', // Replace with actual URL
+                ? 'منصة متخصصة في المجال الطبي والدوائي، تقدم محتوى توعوي وتحليلي، وتساعد على فهم ديناميكية السوق الصحي وسلوك المستهلك.'
+                : 'A specialized platform in the medical and pharmaceutical field, providing educational and analytical content, helping to understand the dynamics of the health market and consumer behavior.',
+            url: 'https://www.instagram.com/sideeffect_platform',
+            socialLinks: [
+                { type: 'instagram', url: 'https://www.instagram.com/sideeffect_platform' },
+                { type: 'facebook', url: 'https://www.facebook.com/share/1ALZaxgPNA/?mibextid=wwXIfr' }
+            ],
             logo: '/logos/clients/06.png',
-            gradient: 'from-red-600 to-orange-500'
+            gradient: 'from-blue-600 to-cyan-500',
+            comingSoon: false
+        },
+        {
+            name: 'روّاد',
+            nameEn: 'Rawad',
+            description: lang === 'ar'
+                ? 'منصة متخصصة في الاقتصاد وريادة الأعمال، تركز على تحليل السوق والمشاريع وفهم بيئة الأعمال المحلية.'
+                : 'A platform specialized in economics and entrepreneurship, focusing on analyzing the market and projects and understanding the local business environment.',
+            url: '#', // Coming soon
+            logo: '/logos/clients/04.png',
+            gradient: 'from-emerald-600 to-green-500',
+            comingSoon: true
         }
     ];
 
@@ -93,71 +99,96 @@ const PlatformsSection: React.FC<PlatformsSectionProps> = ({ theme, lang }) => {
                     viewport={{ once: true, margin: "-100px" }}
                     className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8"
                 >
-                    {platforms.map((platform, index) => (
-                        <motion.a
-                            key={index}
-                            href={platform.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            variants={itemVariants}
-                            whileHover={{ y: -8, scale: 1.02 }}
-                            className="group relative bg-onyx/60 backdrop-blur-xl rounded-[2rem] sm:rounded-[2.5rem] p-8 sm:p-10 md:p-12 border border-white/10 overflow-hidden transition-all duration-500 hover:border-white/20"
-                        >
-                            {/* Gradient Background */}
-                            <div className={`absolute inset-0 bg-gradient-to-br ${platform.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                    {platforms.map((platform, index) => {
+                        const CardElement = platform.url === '#' ? motion.div : motion.a;
+                        const cardProps = platform.url === '#'
+                            ? {}
+                            : {
+                                href: platform.url,
+                                target: "_blank",
+                                rel: "noopener noreferrer"
+                            };
 
-                            {/* Accent Glow */}
-                            <div
-                                className="absolute -top-20 -right-20 w-40 h-40 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 gpu-accelerate"
-                                style={{ background: `radial-gradient(circle, ${accentColor}66 0%, transparent 70%)` }}
-                            />
+                        return (
+                            <CardElement
+                                key={index}
+                                {...cardProps}
+                                variants={itemVariants}
+                                whileHover={{ y: -8, scale: 1.02 }}
+                                className={`group relative bg-onyx/60 backdrop-blur-xl rounded-[2rem] sm:rounded-[2.5rem] p-8 sm:p-10 md:p-12 border border-white/10 overflow-hidden transition-all duration-500 hover:border-white/20 ${platform.url === '#' ? 'cursor-default' : 'cursor-pointer'}`}
+                            >
+                                {/* Gradient Background */}
+                                <div className={`absolute inset-0 bg-gradient-to-br ${platform.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
 
-                            {/* Logo */}
-                            <div className="relative w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 mb-6 transform group-hover:scale-110 transition-transform duration-500">
-                                <img
-                                    src={platform.logo}
-                                    alt={platform.name}
-                                    className="w-full h-full object-contain filter drop-shadow-2xl"
+                                {/* Accent Glow */}
+                                <div
+                                    className="absolute -top-20 -right-20 w-40 h-40 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 gpu-accelerate"
+                                    style={{ background: `radial-gradient(circle, ${accentColor}66 0%, transparent 70%)` }}
                                 />
-                            </div>
 
-                            {/* Platform Name */}
-                            <h3 className={`text-3xl sm:text-4xl md:text-5xl font-bold mb-4 ${lang === 'ar' ? 'font-heading' : 'font-english'}`}>
-                                <span className="text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-white/60 transition-all duration-500">
-                                    {lang === 'ar' ? platform.name : platform.nameEn}
-                                </span>
-                            </h3>
+                                {/* Logo */}
+                                <div className="relative w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 mb-6 transform group-hover:scale-110 transition-transform duration-500">
+                                    <img
+                                        src={platform.logo}
+                                        alt={platform.name}
+                                        className="w-full h-full object-contain filter drop-shadow-2xl"
+                                    />
+                                </div>
 
-                            {/* Description */}
-                            <p className="text-silver/70 text-base sm:text-lg mb-8 leading-relaxed">
-                                {platform.description}
-                            </p>
+                                {/* Platform Name with Coming Soon Badge */}
+                                <div className="flex items-center gap-3 mb-4">
+                                    <h3 className={`text-3xl sm:text-4xl md:text-5xl font-bold ${lang === 'ar' ? 'font-heading' : 'font-english'}`}>
+                                        <span className="text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-white/60 transition-all duration-500">
+                                            {lang === 'ar' ? platform.name : platform.nameEn}
+                                        </span>
+                                    </h3>
+                                    {platform.comingSoon && (
+                                        <span
+                                            className="text-xs font-english font-bold px-3 py-1 rounded-full border"
+                                            style={{
+                                                color: accentColor,
+                                                backgroundColor: `${accentColor}15`,
+                                                borderColor: `${accentColor}30`
+                                            }}
+                                        >
+                                            {lang === 'ar' ? 'قريباً' : 'SOON'}
+                                        </span>
+                                    )}
+                                </div>
 
-                            {/* CTA Button */}
-                            <div className="flex items-center gap-3 text-sm sm:text-base font-bold tracking-wider">
-                                <span
-                                    className="transition-colors duration-300"
-                                    style={{ color: accentColor }}
-                                >
-                                    {lang === 'ar' ? 'زيارة المنصة' : 'Visit Platform'}
-                                </span>
-                                <ExternalLink
-                                    size={18}
-                                    className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"
-                                    style={{ color: accentColor }}
+                                {/* Description */}
+                                <p className="text-silver/70 text-base sm:text-lg mb-8 leading-relaxed">
+                                    {platform.description}
+                                </p>
+
+                                {/* CTA Button - Only show for active platforms */}
+                                {platform.url !== '#' && (
+                                    <div className="flex items-center gap-3 text-sm sm:text-base font-bold tracking-wider">
+                                        <span
+                                            className="transition-colors duration-300"
+                                            style={{ color: accentColor }}
+                                        >
+                                            {lang === 'ar' ? 'زيارة المنصة' : 'Visit Platform'}
+                                        </span>
+                                        <ExternalLink
+                                            size={18}
+                                            className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"
+                                            style={{ color: accentColor }}
+                                        />
+                                    </div>
+                                )}
+
+                                {/* Decorative Corner */}
+                                <div
+                                    className="absolute bottom-0 left-0 w-24 h-24 opacity-5 group-hover:opacity-10 transition-opacity duration-500"
+                                    style={{
+                                        background: `linear-gradient(135deg, ${accentColor} 0%, transparent 70%)`,
+                                        borderRadius: '0 100% 0 0'
+                                    }}
                                 />
-                            </div>
-
-                            {/* Decorative Corner */}
-                            <div
-                                className="absolute bottom-0 left-0 w-24 h-24 opacity-5 group-hover:opacity-10 transition-opacity duration-500"
-                                style={{
-                                    background: `linear-gradient(135deg, ${accentColor} 0%, transparent 70%)`,
-                                    borderRadius: '0 100% 0 0'
-                                }}
-                            />
-                        </motion.a>
-                    ))}
+                            </CardElement>
+                        );
+                    })}
                 </motion.div>
             </div>
         </section>
