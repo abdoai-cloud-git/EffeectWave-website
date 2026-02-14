@@ -336,11 +336,11 @@ const HomePage: React.FC<HomePageProps> = ({ theme, lang }) => {
       <div id="team">
         <Team
           lang={lang}
-          subtitle={lang === 'ar' ? "فريقنا" : "OUR TEAM"}
-          title={lang === 'ar' ? "العقول خلف الإبداع" : "Minds Behind Creativity"}
+          subtitle={lang === 'ar' ? "فريق العمل" : "OUR TEAM"}
+          title={lang === 'ar' ? "فريق يصنع التأثير بعقلية استثمارية" : "A Team Creating Impact with an Investment Mindset"}
           description={lang === 'ar'
-            ? "مجموعة من الشغوفين المبدعين الذين يجمعهم هدف واحد: تحويل أفكارك إلى واقع استثنائي."
-            : "A group of passionate creators united by one goal: transforming your ideas into extraordinary reality."}
+            ? "يتكوّن من مختصين في الإعلام، التسويق، الإنتاج، التخطيط، والإدارة، يعملون معًا لبناء مشاريع ذات قيمة وتأثير مستدام."
+            : "Composed of specialists in media, marketing, production, planning, and management, working together to build projects of value and sustainable impact."}
         />
       </div>
 

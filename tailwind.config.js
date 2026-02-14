@@ -27,7 +27,16 @@ export default {
       },
       borderRadius: {
         '3xl': '1.5rem',
-      }
+      },
+      animation: {
+        'scroll-left': 'scroll-left 40s linear infinite',
+      },
+      keyframes: {
+        'scroll-left': {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-33.333%)' },
+        },
+      },
     },
   },
   plugins: [],

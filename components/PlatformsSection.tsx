@@ -79,15 +79,15 @@ const PlatformsSection: React.FC<PlatformsSectionProps> = ({ theme, lang }) => {
                     <div className="flex items-center justify-center gap-4 mb-6">
                         <div className="h-[2px] w-12 sm:w-16" style={{ backgroundColor: accentColor }} />
                         <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold ${lang === 'ar' ? 'font-heading' : 'font-english'}`}>
-                            <span className="text-white">{lang === 'ar' ? 'منصاتنا' : 'Our '}</span>
-                            <span style={{ color: accentColor }}>{lang === 'ar' ? '' : 'Platforms'}</span>
+                            <span className="text-white">{lang === 'ar' ? 'منصات ' : 'Effect Wave '}</span>
+                            <span style={{ color: accentColor }}>{lang === 'ar' ? 'موجة تأثير' : 'Platforms'}</span>
                         </h2>
                         <div className="h-[2px] w-12 sm:w-16" style={{ backgroundColor: accentColor }} />
                     </div>
-                    <p className="text-silver/60 text-base sm:text-lg md:text-xl max-w-2xl mx-auto">
+                    <p className="text-silver/60 text-base sm:text-lg md:text-xl max-w-3xl mx-auto">
                         {lang === 'ar'
-                            ? 'منصات رقمية متطورة تقدم حلولاً مبتكرة في التسويق والإنتاج الإعلامي'
-                            : 'Advanced digital platforms offering innovative solutions in marketing and media production'}
+                            ? 'لتحقيق فهم أعمق للسوق الليبي، أنشأت موجة تأثير منصات متخصصة تعمل كأدوات بحث تسويقي تمكّننا من دراسة السوق مباشرة وتحليل سلوك الجمهور.'
+                            : 'To achieve a deeper understanding of the Libyan market, Effect Wave created specialized platforms that work as marketing research tools, enabling us to study the market directly and analyze audience behavior.'}
                     </p>
                 </motion.div>
 

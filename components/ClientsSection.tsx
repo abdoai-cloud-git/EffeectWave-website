@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X } from 'lucide-react';
 
@@ -10,40 +10,12 @@ interface ClientsSectionProps {
 const ClientsSection: React.FC<ClientsSectionProps> = ({ theme, lang }) => {
     const accentColor = theme === 'agency' ? '#ebe125' : '#b20600';
     const [selectedLogo, setSelectedLogo] = useState<string | null>(null);
-    const [isPaused, setIsPaused] = useState(false);
-    const scrollRef = useRef<HTMLDivElement>(null);
 
-    // Client logos (excluding 04 and 06 which are platform logos)
-    const clientLogos = [1, 2, 3, 5, 7, 8, 9, 10, 11, 12, 13].map(num => {
-        const filename = num < 10 ? `0${num}.png` : `0${num}.png`;
-        return `/logos/clients/${filename}`;
+    // Generate all 13 client logo paths
+    const clientLogos = Array.from({ length: 13 }, (_, i) => {
+        const num = (i + 1).toString().padStart(2, '0');
+        return `/logos/clients/${num}.png`;
     });
-
-    // Smooth infinite scroll with requestAnimationFrame
-    useEffect(() => {
-        const container = scrollRef.current;
-        if (!container) return;
-
-        let animationId: number;
-        let scrollPos = 0;
-        const speed = 0.5; // pixels per frame
-
-        const animate = () => {
-            if (!isPaused) {
-                scrollPos += speed;
-                // Reset when first set is fully scrolled past
-                const halfWidth = container.scrollWidth / 2;
-                if (scrollPos >= halfWidth) {
-                    scrollPos = 0;
-                }
-                container.style.transform = `translateX(-${scrollPos}px)`;
-            }
-            animationId = requestAnimationFrame(animate);
-        };
-
-        animationId = requestAnimationFrame(animate);
-        return () => cancelAnimationFrame(animationId);
-    }, [isPaused]);
 
     return (
         <section className="py-16 sm:py-20 md:py-28 px-0 relative overflow-hidden bg-gradient-to-b from-obsidian to-onyx">
@@ -84,66 +56,59 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({ theme, lang }) => {
                     </div>
 
                     <h2 className={`text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 ${lang === 'ar' ? 'font-heading' : 'font-english'}`}>
-                        <span className="text-white">{lang === 'ar' ? 'عملاؤنا' : 'Our '}</span>
+                        <span className="text-white">{lang === 'ar' ? 'شركات ومؤسسات تعاملنا معها' : 'Our '}</span>
                         <span style={{ color: accentColor }}>{lang === 'ar' ? '' : 'Clients'}</span>
                     </h2>
 
                     <p className="text-silver/50 text-sm sm:text-base max-w-lg mx-auto leading-relaxed">
                         {lang === 'ar'
-                            ? 'نفخر بثقة عملائنا وشراكاتنا الناجحة معهم'
+                            ? 'نفخر بتقديم خدماتنا لعدد من الشركات والمؤسسات في مختلف المجالات.'
                             : 'We take pride in our clients\' trust and successful partnerships'}
                     </p>
                 </motion.div>
 
-                {/* Logo Marquee — sleek glassmorphism approach */}
-                <div
-                    className="relative"
-                    onMouseEnter={() => setIsPaused(true)}
-                    onMouseLeave={() => setIsPaused(false)}
+                {/* Logo Grid — All Visible with Staggered Animation */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="max-w-7xl mx-auto px-6"
                 >
-                    {/* Gradient fade edges */}
-                    <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-40 md:w-56 bg-gradient-to-r from-obsidian via-obsidian/80 to-transparent z-20 pointer-events-none" />
-                    <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-40 md:w-56 bg-gradient-to-l from-onyx via-onyx/80 to-transparent z-20 pointer-events-none" />
+                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-4 sm:gap-6 md:gap-8 justify-items-center">
+                        {clientLogos.map((logo, index) => (
+                            <motion.button
+                                key={index}
+                                initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{
+                                    duration: 0.5,
+                                    delay: index * 0.08,
+                                    ease: [0.25, 0.46, 0.45, 0.94]
+                                }}
+                                onClick={() => setSelectedLogo(logo)}
+                                whileHover={{ scale: 1.1, y: -8 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 flex items-center justify-center rounded-2xl p-3 sm:p-4 md:p-5 border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm hover:border-white/[0.15] hover:bg-white/[0.05] transition-all duration-500 cursor-pointer relative group"
+                            >
+                                {/* Hover glow ring */}
+                                <div
+                                    className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                                    style={{
+                                        boxShadow: `inset 0 0 20px ${accentColor}10, 0 0 30px ${accentColor}08`
+                                    }}
+                                />
 
-                    {/* Scrolling track */}
-                    <div className="overflow-hidden py-4">
-                        <div
-                            ref={scrollRef}
-                            className="flex items-center gap-6 sm:gap-8 md:gap-10 will-change-transform"
-                        >
-                            {/* Two identical sets for seamless loop */}
-                            {[0, 1].map(setIndex => (
-                                <React.Fragment key={setIndex}>
-                                    {clientLogos.map((logo, index) => (
-                                        <motion.button
-                                            key={`set-${setIndex}-${index}`}
-                                            onClick={() => setSelectedLogo(logo)}
-                                            whileHover={{ scale: 1.08, y: -4 }}
-                                            whileTap={{ scale: 0.95 }}
-                                            transition={{ type: 'spring', stiffness: 400, damping: 20 }}
-                                            className="flex-shrink-0 w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 flex items-center justify-center rounded-2xl p-3 sm:p-4 md:p-5 border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm hover:border-white/[0.15] hover:bg-white/[0.05] transition-all duration-500 cursor-pointer relative group"
-                                        >
-                                            {/* Hover glow ring */}
-                                            <div
-                                                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                                                style={{
-                                                    boxShadow: `inset 0 0 20px ${accentColor}10, 0 0 30px ${accentColor}08`
-                                                }}
-                                            />
-
-                                            <img
-                                                src={logo}
-                                                alt={`Client ${index + 1}`}
-                                                className="w-full h-full object-contain relative z-10 opacity-60 group-hover:opacity-100 transition-all duration-500 grayscale group-hover:grayscale-0"
-                                                loading="lazy"
-                                            />
-                                        </motion.button>
-                                    ))}
-                                </React.Fragment>
-                            ))}
-                        </div>
+                                <img
+                                    src={logo}
+                                    alt={`Client ${index + 1}`}
+                                    className="w-full h-full object-contain relative z-10 opacity-70 group-hover:opacity-100 transition-all duration-500 brightness-0 invert group-hover:brightness-100 group-hover:invert-0"
+                                />
+                            </motion.button>
+                        ))}
                     </div>
-                </div>
+                </motion.div>
 
                 {/* Stats bar */}
                 <motion.div
@@ -154,9 +119,9 @@ const ClientsSection: React.FC<ClientsSectionProps> = ({ theme, lang }) => {
                     className="flex flex-wrap items-center justify-center gap-6 sm:gap-10 md:gap-16 mt-12 sm:mt-16 px-6"
                 >
                     {[
-                        { value: lang === 'ar' ? '+٥٠' : '50+', label: lang === 'ar' ? 'مشروع مكتمل' : 'Projects Delivered' },
-                        { value: lang === 'ar' ? '+٣٠' : '30+', label: lang === 'ar' ? 'عميل راضٍ' : 'Happy Clients' },
-                        { value: lang === 'ar' ? '+٥' : '5+', label: lang === 'ar' ? 'سنوات خبرة' : 'Years Experience' },
+                        { value: lang === 'ar' ? '50+' : '50+', label: lang === 'ar' ? 'مشروع مكتمل' : 'Projects Delivered' },
+                        { value: lang === 'ar' ? '30+' : '30+', label: lang === 'ar' ? 'عميل راضٍ' : 'Happy Clients' },
+                        { value: lang === 'ar' ? '5+' : '5+', label: lang === 'ar' ? 'سنوات خبرة' : 'Years Experience' },
                     ].map((stat, index) => (
                         <div key={index} className="text-center group">
                             <div
