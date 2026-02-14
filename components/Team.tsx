@@ -105,7 +105,7 @@ const Team: React.FC<TeamProps> = ({ subtitle, title, description, lang }) => {
       ]
     },
     {
-      name: lang === 'ar' ? "أحمد عمار" : "Ahmed Ammar",
+      name: lang === 'ar' ? "أحمد عمار" : "Ahmed Amar",
       role: lang === 'ar' ? "مدير العلاقات العامة" : "Public Relations Manager",
       image: "/assets/Media/team/أحمد عمار-مدير العلاقات العامة.jpg",
       socials: [

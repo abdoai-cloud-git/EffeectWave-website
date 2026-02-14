@@ -64,7 +64,7 @@ const TeamPage: React.FC<TeamPageProps> = ({ theme, lang }) => {
       ]
     },
     {
-      name: lang === 'ar' ? "أحمد عمار" : "Ahmed Ammar",
+      name: lang === 'ar' ? "أحمد عمار" : "Ahmed Amar",
       title: lang === 'ar' ? "مدير العلاقات العامة" : "Public Relations Manager",
       englishTitle: "Public Relations Manager",
       image: "/assets/Media/team/أحمد عمار-مدير العلاقات العامة.jpg",

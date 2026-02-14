@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Instagram, Facebook } from 'lucide-react';
+import { Instagram, Facebook } from 'lucide-react';
 
 interface PlatformsSectionProps {
     theme: 'agency' | 'production';
@@ -17,7 +17,6 @@ const PlatformsSection: React.FC<PlatformsSectionProps> = ({ theme, lang }) => {
             description: lang === 'ar'
                 ? 'منصة متخصصة في المجال الطبي والدوائي، تقدم محتوى توعوي وتحليلي، وتساعد على فهم ديناميكية السوق الصحي وسلوك المستهلك.'
                 : 'A specialized platform in the medical and pharmaceutical field, providing educational and analytical content, helping to understand the dynamics of the health market and consumer behavior.',
-            url: 'https://www.instagram.com/sideeffect_platform',
             socialLinks: [
                 { type: 'instagram', url: 'https://www.instagram.com/sideeffect_platform' },
                 { type: 'facebook', url: 'https://www.facebook.com/share/1ALZaxgPNA/?mibextid=wwXIfr' }
@@ -32,7 +31,6 @@ const PlatformsSection: React.FC<PlatformsSectionProps> = ({ theme, lang }) => {
             description: lang === 'ar'
                 ? 'منصة متخصصة في الاقتصاد وريادة الأعمال، تركز على تحليل السوق والمشاريع وفهم بيئة الأعمال المحلية.'
                 : 'A platform specialized in economics and entrepreneurship, focusing on analyzing the market and projects and understanding the local business environment.',
-            url: '#', // Coming soon
             logo: '/logos/clients/04.png',
             gradient: 'from-emerald-600 to-green-500',
             comingSoon: true
@@ -99,120 +97,91 @@ const PlatformsSection: React.FC<PlatformsSectionProps> = ({ theme, lang }) => {
                     viewport={{ once: true, margin: "-100px" }}
                     className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8"
                 >
-                    {platforms.map((platform, index) => {
-                        const CardElement = platform.url === '#' ? motion.div : motion.a;
-                        const cardProps = platform.url === '#'
-                            ? {}
-                            : {
-                                href: platform.url,
-                                target: "_blank",
-                                rel: "noopener noreferrer"
-                            };
+                    {platforms.map((platform, index) => (
+                        <motion.div
+                            key={index}
+                            variants={itemVariants}
+                            whileHover={{ y: -8, scale: 1.02 }}
+                            className="group relative bg-onyx/60 backdrop-blur-xl rounded-[2rem] sm:rounded-[2.5rem] p-8 sm:p-10 md:p-12 border border-white/10 overflow-hidden transition-all duration-500 hover:border-white/20"
+                        >
+                            {/* Gradient Background */}
+                            <div className={`absolute inset-0 bg-gradient-to-br ${platform.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
 
-                        return (
-                            <CardElement
-                                key={index}
-                                {...cardProps}
-                                variants={itemVariants}
-                                whileHover={{ y: -8, scale: 1.02 }}
-                                className={`group relative bg-onyx/60 backdrop-blur-xl rounded-[2rem] sm:rounded-[2.5rem] p-8 sm:p-10 md:p-12 border border-white/10 overflow-hidden transition-all duration-500 hover:border-white/20 ${platform.url === '#' ? 'cursor-default' : 'cursor-pointer'}`}
-                            >
-                                {/* Gradient Background */}
-                                <div className={`absolute inset-0 bg-gradient-to-br ${platform.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500`} />
+                            {/* Accent Glow */}
+                            <div
+                                className="absolute -top-20 -right-20 w-40 h-40 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 gpu-accelerate"
+                                style={{ background: `radial-gradient(circle, ${accentColor}66 0%, transparent 70%)` }}
+                            />
 
-                                {/* Accent Glow */}
-                                <div
-                                    className="absolute -top-20 -right-20 w-40 h-40 rounded-full opacity-0 group-hover:opacity-20 transition-opacity duration-500 gpu-accelerate"
-                                    style={{ background: `radial-gradient(circle, ${accentColor}66 0%, transparent 70%)` }}
+                            {/* Logo */}
+                            <div className="relative w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 mb-6 transform group-hover:scale-110 transition-transform duration-500">
+                                <img
+                                    src={platform.logo}
+                                    alt={platform.name}
+                                    className="w-full h-full object-contain filter drop-shadow-2xl"
                                 />
+                            </div>
 
-                                {/* Logo */}
-                                <div className="relative w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 mb-6 transform group-hover:scale-110 transition-transform duration-500">
-                                    <img
-                                        src={platform.logo}
-                                        alt={platform.name}
-                                        className="w-full h-full object-contain filter drop-shadow-2xl"
-                                    />
-                                </div>
-
-                                {/* Platform Name with Coming Soon Badge */}
-                                <div className="flex items-center gap-3 mb-4">
-                                    <h3 className={`text-3xl sm:text-4xl md:text-5xl font-bold ${lang === 'ar' ? 'font-heading' : 'font-english'}`}>
-                                        <span className="text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-white/60 transition-all duration-500">
-                                            {lang === 'ar' ? platform.name : platform.nameEn}
-                                        </span>
-                                    </h3>
-                                    {platform.comingSoon && (
-                                        <span
-                                            className="text-xs font-english font-bold px-3 py-1 rounded-full border"
-                                            style={{
-                                                color: accentColor,
-                                                backgroundColor: `${accentColor}15`,
-                                                borderColor: `${accentColor}30`
-                                            }}
-                                        >
-                                            {lang === 'ar' ? 'قريباً' : 'SOON'}
-                                        </span>
-                                    )}
-                                </div>
-
-                                {/* Description */}
-                                <p className="text-silver/70 text-base sm:text-lg mb-6 leading-relaxed">
-                                    {platform.description}
-                                </p>
-
-                                {/* Social Media Links */}
-                                {platform.socialLinks && platform.socialLinks.length > 0 && (
-                                    <div className="flex items-center gap-3 mb-6">
-                                        {platform.socialLinks.map((social, idx) => (
-                                            <a
-                                                key={idx}
-                                                href={social.url}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-110"
-                                                onClick={(e) => e.stopPropagation()}
-                                                aria-label={social.type}
-                                            >
-                                                {social.type === 'instagram' && (
-                                                    <Instagram size={18} className="text-white" />
-                                                )}
-                                                {social.type === 'facebook' && (
-                                                    <Facebook size={18} className="text-white" />
-                                                )}
-                                            </a>
-                                        ))}
-                                    </div>
+                            {/* Platform Name with Coming Soon Badge */}
+                            <div className="flex items-center gap-3 mb-4">
+                                <h3 className={`text-3xl sm:text-4xl md:text-5xl font-bold ${lang === 'ar' ? 'font-heading' : 'font-english'}`}>
+                                    <span className="text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-white/60 transition-all duration-500">
+                                        {lang === 'ar' ? platform.name : platform.nameEn}
+                                    </span>
+                                </h3>
+                                {platform.comingSoon && (
+                                    <span
+                                        className="text-xs font-english font-bold px-3 py-1 rounded-full border"
+                                        style={{
+                                            color: accentColor,
+                                            backgroundColor: `${accentColor}15`,
+                                            borderColor: `${accentColor}30`
+                                        }}
+                                    >
+                                        {lang === 'ar' ? 'قريباً' : 'SOON'}
+                                    </span>
                                 )}
+                            </div>
 
-                                {/* CTA Button - Only show for active platforms */}
-                                {platform.url !== '#' && (
-                                    <div className="flex items-center gap-3 text-sm sm:text-base font-bold tracking-wider">
-                                        <span
-                                            className="transition-colors duration-300"
-                                            style={{ color: accentColor }}
+                            {/* Description */}
+                            <p className="text-silver/70 text-base sm:text-lg mb-6 leading-relaxed">
+                                {platform.description}
+                            </p>
+
+                            {/* Social Media Links */}
+                            {platform.socialLinks && platform.socialLinks.length > 0 && (
+                                <div className="flex items-center gap-3 mb-6">
+                                    {platform.socialLinks.map((social, idx) => (
+                                        <a
+                                            key={idx}
+                                            href={social.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-110"
+                                            onClick={(e) => e.stopPropagation()}
+                                            aria-label={social.type}
                                         >
-                                            {lang === 'ar' ? 'زيارة المنصة' : 'Visit Platform'}
-                                        </span>
-                                        <ExternalLink
-                                            size={18}
-                                            className="transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300"
-                                            style={{ color: accentColor }}
-                                        />
-                                    </div>
-                                )}
+                                            {social.type === 'instagram' && (
+                                                <Instagram size={18} className="text-white" />
+                                            )}
+                                            {social.type === 'facebook' && (
+                                                <Facebook size={18} className="text-white" />
+                                            )}
+                                        </a>
+                                    ))}
+                                </div>
+                            )}
 
-                                {/* Decorative Corner */}
-                                <div
-                                    className="absolute bottom-0 left-0 w-24 h-24 opacity-5 group-hover:opacity-10 transition-opacity duration-500"
-                                    style={{
-                                        background: `linear-gradient(135deg, ${accentColor} 0%, transparent 70%)`,
-                                        borderRadius: '0 100% 0 0'
-                                    }}
-                                />
-                            </CardElement>
-                        );
-                    })}
+                            {/* Decorative Corner */}
+                            <div
+                                className="absolute bottom-0 left-0 w-24 h-24 opacity-5 group-hover:opacity-10 transition-opacity duration-500"
+                                style={{
+                                    background: `linear-gradient(135deg, ${accentColor} 0%, transparent 70%)`,
+                                    borderRadius: '0 100% 0 0'
+                                }}
+                            />
+                        </motion.div>
+                    ))}
                 </motion.div>
             </div>
         </section>

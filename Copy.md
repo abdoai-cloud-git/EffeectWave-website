@@ -42,7 +42,7 @@ Sami Al-Tajouri: Founder & CEO (المؤسس والمدير التنفيذي)
 
 Mohamed Bin Nasser: Managing Director (المدير العام)
 
-Ahmed Ammar: Head of Relations (مدير العلاقات)
+Ahmed Amar: Head of Relations (مدير العلاقات)
 
 [Name]: Creative Director (المدير الإبداعي)
 
