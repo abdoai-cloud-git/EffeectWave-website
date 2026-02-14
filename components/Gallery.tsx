@@ -15,7 +15,7 @@ interface MediaItem {
 }
 
 const galleryData: MediaItem[] = [
-    // Images from public/assets/Media
+    // Social Media
     {
         id: 1,
         type: 'image',
@@ -27,45 +27,29 @@ const galleryData: MediaItem[] = [
     {
         id: 2,
         type: 'image',
-        thumbnail: '/assets/Media/BIANCO copy.jpg',
-        url: '/assets/Media/BIANCO copy.jpg',
-        category: 'Branding',
-        title: { en: 'Premium Branding', ar: 'هوية بصرية فاخرة' }
-    },
-    {
-        id: 3,
-        type: 'image',
         thumbnail: '/assets/Media/baw social media 2 copy.jpg',
         url: '/assets/Media/baw social media 2 copy.jpg',
         category: 'Social Media',
         title: { en: 'Dynamic Content', ar: 'محتوى تفاعلي' }
     },
     {
+        id: 3,
+        type: 'image',
+        thumbnail: '/assets/Media/baw social media 3 2.jpg',
+        url: '/assets/Media/baw social media 3 2.jpg',
+        category: 'Social Media',
+        title: { en: 'Social Media Design', ar: 'تصميم سوشل ميديا' }
+    },
+    {
         id: 4,
         type: 'image',
-        thumbnail: '/assets/Media/tetto.jpg',
-        url: '/assets/Media/tetto.jpg',
-        category: 'Branding',
-        title: { en: 'Corporate Identity', ar: 'هوية مؤسسية' }
+        thumbnail: '/assets/Media/baw social media 3 copy.jpg',
+        url: '/assets/Media/baw social media 3 copy.jpg',
+        category: 'Social Media',
+        title: { en: 'Social Campaign', ar: 'حملة اجتماعية' }
     },
     {
         id: 5,
-        type: 'image',
-        thumbnail: '/assets/Media/الرسالة.jpg',
-        url: '/assets/Media/الرسالة.jpg',
-        category: 'Social Media',
-        title: { en: 'Creative Storytelling', ar: 'سرد قصصي إبداعي' }
-    },
-    {
-        id: 6,
-        type: 'image',
-        thumbnail: '/assets/Media/بوست التسويق الإلكتروني copy.jpg',
-        url: '/assets/Media/بوست التسويق الإلكتروني copy.jpg',
-        category: 'Marketing',
-        title: { en: 'Digital Marketing', ar: 'تسويق إلكتروني' }
-    },
-    {
-        id: 7,
         type: 'image',
         thumbnail: '/assets/Media/بوست سوشل ميديا رؤيتنا copy.jpg',
         url: '/assets/Media/بوست سوشل ميديا رؤيتنا copy.jpg',
@@ -73,44 +57,448 @@ const galleryData: MediaItem[] = [
         title: { en: 'Our Vision Post', ar: 'بوست رؤيتنا' }
     },
     {
-        id: 8,
+        id: 6,
         type: 'image',
         thumbnail: '/assets/Media/بوست سوشل ميديا التسويق التقليدي copy.jpg',
         url: '/assets/Media/بوست سوشل ميديا التسويق التقليدي copy.jpg',
-        category: 'Marketing',
-        title: { en: 'Traditional Marketing', ar: 'التسويق التقليدي' }
+        category: 'Social Media',
+        title: { en: 'Traditional Marketing Post', ar: 'بوست التسويق التقليدي' }
+    },
+    {
+        id: 7,
+        type: 'image',
+        thumbnail: '/assets/Media/بوست سوشل ميديا الانتاج الاعلامي copy.jpg',
+        url: '/assets/Media/بوست سوشل ميديا الانتاج الاعلامي copy.jpg',
+        category: 'Social Media',
+        title: { en: 'Media Production Post', ar: 'بوست الإنتاج الإعلامي' }
+    },
+    {
+        id: 8,
+        type: 'image',
+        thumbnail: '/assets/Media/بوست سوششل ميديا موجة copy.jpg',
+        url: '/assets/Media/بوست سوششل ميديا موجة copy.jpg',
+        category: 'Social Media',
+        title: { en: 'Effect Wave Post', ar: 'بوست موجة تأثير' }
     },
     {
         id: 9,
         type: 'image',
-        thumbnail: '/assets/Media/بوست سوشل ميديا الانتاج الاعلامي copy.jpg',
-        url: '/assets/Media/بوست سوشل ميديا الانتاج الاعلامي copy.jpg',
-        category: 'Production',
-        title: { en: 'Media Production', ar: 'الإنتاج الإعلامي' }
+        thumbnail: '/assets/Media/بوستت المطبوعات copy.jpg',
+        url: '/assets/Media/بوستت المطبوعات copy.jpg',
+        category: 'Social Media',
+        title: { en: 'Print Design Post', ar: 'بوست المطبوعات' }
     },
     {
         id: 10,
         type: 'image',
-        thumbnail: '/assets/Media/بوست توصيلة 02 copy.jpg',
-        url: '/assets/Media/بوست توصيلة 02 copy.jpg',
+        thumbnail: '/assets/Media/الرسالة.jpg',
+        url: '/assets/Media/الرسالة.jpg',
         category: 'Social Media',
-        title: { en: 'Delivery App Post', ar: 'بوست تطبيق توصيل' }
+        title: { en: 'Creative Storytelling', ar: 'سرد قصصي إبداعي' }
     },
     {
         id: 11,
         type: 'image',
+        thumbnail: '/assets/Media/الرؤية2.jpg',
+        url: '/assets/Media/الرؤية2.jpg',
+        category: 'Social Media',
+        title: { en: 'Our Vision', ar: 'رؤيتنا' }
+    },
+    {
+        id: 12,
+        type: 'image',
+        thumbnail: '/assets/Media/معلومة copy.jpg',
+        url: '/assets/Media/معلومة copy.jpg',
+        category: 'Social Media',
+        title: { en: 'Information Post', ar: 'بوست معلومة' }
+    },
+    {
+        id: 13,
+        type: 'image',
+        thumbnail: '/assets/Media/cover facebook or 2 3.jpg',
+        url: '/assets/Media/cover facebook or 2 3.jpg',
+        category: 'Social Media',
+        title: { en: 'Facebook Cover', ar: 'غلاف فيسبوك' }
+    },
+    {
+        id: 14,
+        type: 'image',
+        thumbnail: '/assets/Media/cover youtube2 copy.jpg',
+        url: '/assets/Media/cover youtube2 copy.jpg',
+        category: 'Social Media',
+        title: { en: 'YouTube Cover', ar: 'غلاف يوتيوب' }
+    },
+    // Branding
+    {
+        id: 15,
+        type: 'image',
+        thumbnail: '/assets/Media/BIANCO copy.jpg',
+        url: '/assets/Media/BIANCO copy.jpg',
+        category: 'Branding',
+        title: { en: 'Bianco Branding', ar: 'هوية بيانكو' }
+    },
+    {
+        id: 16,
+        type: 'image',
+        thumbnail: '/assets/Media/tetto.jpg',
+        url: '/assets/Media/tetto.jpg',
+        category: 'Branding',
+        title: { en: 'Tetto Brand Identity', ar: 'هوية تيتو' }
+    },
+    {
+        id: 17,
+        type: 'image',
+        thumbnail: '/assets/Media/STUCCO PLAST.jpg',
+        url: '/assets/Media/STUCCO PLAST.jpg',
+        category: 'Branding',
+        title: { en: 'Stucco Plast Branding', ar: 'هوية ستوكو بلاست' }
+    },
+    {
+        id: 18,
+        type: 'image',
         thumbnail: '/assets/Media/برايمر الطوقان بلس copy.jpg',
         url: '/assets/Media/برايمر الطوقان بلس copy.jpg',
+        category: 'Branding',
+        title: { en: 'Toucan Plus Primer', ar: 'برايمر الطوقان بلس' }
+    },
+    {
+        id: 19,
+        type: 'image',
+        thumbnail: '/assets/Media/برايمر الطوقان copy.jpg',
+        url: '/assets/Media/برايمر الطوقان copy.jpg',
         category: 'Branding',
         title: { en: 'Toucan Primer', ar: 'برايمر الطوقان' }
     },
     {
-        id: 12,
+        id: 20,
+        type: 'image',
+        thumbnail: '/assets/Media/إريشينو copy.jpg',
+        url: '/assets/Media/إريشينو copy.jpg',
+        category: 'Branding',
+        title: { en: 'Erishino Branding', ar: 'هوية إريشينو' }
+    },
+    {
+        id: 21,
+        type: 'image',
+        thumbnail: '/assets/Media/روما شيلد GREEN2.jpg',
+        url: '/assets/Media/روما شيلد GREEN2.jpg',
+        category: 'Branding',
+        title: { en: 'Roma Shield Green', ar: 'روما شيلد أخضر' }
+    },
+    {
+        id: 22,
+        type: 'image',
+        thumbnail: '/assets/Media/روما شيلد.jpg',
+        url: '/assets/Media/روما شيلد.jpg',
+        category: 'Branding',
+        title: { en: 'Roma Shield', ar: 'روما شيلد' }
+    },
+    {
+        id: 23,
+        type: 'image',
+        thumbnail: '/assets/Media/معجون افنان 22.jpg',
+        url: '/assets/Media/معجون افنان 22.jpg',
+        category: 'Branding',
+        title: { en: 'Afnan Product', ar: 'معجون أفنان' }
+    },
+    {
+        id: 24,
+        type: 'image',
+        thumbnail: '/assets/Media/معجون افنان.jpg',
+        url: '/assets/Media/معجون افنان.jpg',
+        category: 'Branding',
+        title: { en: 'Afnan Product Design', ar: 'تصميم معجون أفنان' }
+    },
+    {
+        id: 25,
+        type: 'image',
+        thumbnail: '/assets/Media/الفوائد الصحية 2.jpg',
+        url: '/assets/Media/الفوائد الصحية 2.jpg',
+        category: 'Branding',
+        title: { en: 'Health Benefits', ar: 'الفوائد الصحية' }
+    },
+    // Marketing
+    {
+        id: 26,
+        type: 'image',
+        thumbnail: '/assets/Media/بوست التسويق الإلكتروني copy.jpg',
+        url: '/assets/Media/بوست التسويق الإلكتروني copy.jpg',
+        category: 'Marketing',
+        title: { en: 'Digital Marketing', ar: 'التسويق الإلكتروني' }
+    },
+    {
+        id: 27,
+        type: 'image',
+        thumbnail: '/assets/Media/التعريفي2.jpg',
+        url: '/assets/Media/التعريفي2.jpg',
+        category: 'Marketing',
+        title: { en: 'Introduction Post', ar: 'بوست تعريفي' }
+    },
+    {
+        id: 28,
+        type: 'image',
+        thumbnail: '/assets/Media/top 200.jpg',
+        url: '/assets/Media/top 200.jpg',
+        category: 'Marketing',
+        title: { en: 'Top 200', ar: 'أفضل 200' }
+    },
+    {
+        id: 29,
+        type: 'image',
+        thumbnail: '/assets/Media/top 300 copy.jpg',
+        url: '/assets/Media/top 300 copy.jpg',
+        category: 'Marketing',
+        title: { en: 'Top 300', ar: 'أفضل 300' }
+    },
+    {
+        id: 30,
+        type: 'image',
+        thumbnail: '/assets/Media/baw 5.jpg',
+        url: '/assets/Media/baw 5.jpg',
+        category: 'Marketing',
+        title: { en: 'BAW Campaign', ar: 'حملة BAW' }
+    },
+    {
+        id: 31,
+        type: 'image',
+        thumbnail: '/assets/Media/عرض الخميس copy.jpg',
+        url: '/assets/Media/عرض الخميس copy.jpg',
+        category: 'Marketing',
+        title: { en: 'Thursday Offer', ar: 'عرض الخميس' }
+    },
+    {
+        id: 32,
+        type: 'image',
+        thumbnail: '/assets/Media/سهرة الخميس copy.jpg',
+        url: '/assets/Media/سهرة الخميس copy.jpg',
+        category: 'Marketing',
+        title: { en: 'Thursday Night', ar: 'سهرة الخميس' }
+    },
+    {
+        id: 33,
+        type: 'image',
+        thumbnail: '/assets/Media/كوبونات copy.jpg',
+        url: '/assets/Media/كوبونات copy.jpg',
+        category: 'Marketing',
+        title: { en: 'Coupons Design', ar: 'تصميم كوبونات' }
+    },
+    // Production (Delivery App - Tawsila)
+    {
+        id: 34,
+        type: 'image',
+        thumbnail: '/assets/Media/بوست توصيلة 02 copy.jpg',
+        url: '/assets/Media/بوست توصيلة 02 copy.jpg',
+        category: 'Production',
+        title: { en: 'Tawsila Post', ar: 'بوست توصيلة' }
+    },
+    {
+        id: 35,
+        type: 'image',
+        thumbnail: '/assets/Media/cover facebook توصيلةff copy.jpg',
+        url: '/assets/Media/cover facebook توصيلةff copy.jpg',
+        category: 'Production',
+        title: { en: 'Tawsila Facebook Cover', ar: 'غلاف فيسبوك توصيلة' }
+    },
+    {
+        id: 36,
+        type: 'image',
+        thumbnail: '/assets/Media/توصلك ساخنة.jpg',
+        url: '/assets/Media/توصلك ساخنة.jpg',
+        category: 'Production',
+        title: { en: 'Hot Delivery', ar: 'توصلك ساخنة' }
+    },
+    {
+        id: 37,
+        type: 'image',
+        thumbnail: '/assets/Media/توصيلة بوسسسست 011 copy 2.jpg',
+        url: '/assets/Media/توصيلة بوسسسست 011 copy 2.jpg',
+        category: 'Production',
+        title: { en: 'Tawsila Delivery', ar: 'توصيلة دليفري' }
+    },
+    {
+        id: 38,
+        type: 'image',
+        thumbnail: '/assets/Media/توصيلة ماركت copy.jpg',
+        url: '/assets/Media/توصيلة ماركت copy.jpg',
+        category: 'Production',
+        title: { en: 'Tawsila Market', ar: 'توصيلة ماركت' }
+    },
+    {
+        id: 39,
+        type: 'image',
+        thumbnail: '/assets/Media/حمل التطبيق الان copy01.jpg',
+        url: '/assets/Media/حمل التطبيق الان copy01.jpg',
+        category: 'Production',
+        title: { en: 'Download the App', ar: 'حمّل التطبيق الآن' }
+    },
+    {
+        id: 40,
+        type: 'image',
+        thumbnail: '/assets/Media/اطلب الان اوردينا 3.jpg',
+        url: '/assets/Media/اطلب الان اوردينا 3.jpg',
+        category: 'Production',
+        title: { en: 'Order Now - Ordina', ar: 'اطلب الآن - أورديناً' }
+    },
+    {
+        id: 41,
+        type: 'image',
+        thumbnail: '/assets/Media/البحث عن سائقين اورديناا copy.jpg',
+        url: '/assets/Media/البحث عن سائقين اورديناا copy.jpg',
+        category: 'Production',
+        title: { en: 'Drivers Wanted - Ordina', ar: 'مطلوب سائقين - أوردينا' }
+    },
+    {
+        id: 42,
+        type: 'image',
+        thumbnail: '/assets/Media/مطلوب سائقين 02 copy.jpg',
+        url: '/assets/Media/مطلوب سائقين 02 copy.jpg',
+        category: 'Production',
+        title: { en: 'Drivers Recruitment', ar: 'توظيف سائقين' }
+    },
+    {
+        id: 43,
+        type: 'image',
+        thumbnail: '/assets/Media/مطلوب سائقين اوردينا copy.jpg',
+        url: '/assets/Media/مطلوب سائقين اوردينا copy.jpg',
+        category: 'Production',
+        title: { en: 'Ordina Drivers Wanted', ar: 'مطلوب سائقين أوردينا' }
+    },
+    {
+        id: 44,
+        type: 'image',
+        thumbnail: '/assets/Media/طريقة الدفع 2.jpg',
+        url: '/assets/Media/طريقة الدفع 2.jpg',
+        category: 'Production',
+        title: { en: 'Payment Methods', ar: 'طريقة الدفع' }
+    },
+    {
+        id: 45,
+        type: 'image',
+        thumbnail: '/assets/Media/محاولة توصيلة copy.jpg',
+        url: '/assets/Media/محاولة توصيلة copy.jpg',
+        category: 'Production',
+        title: { en: 'Tawsila Attempt', ar: 'محاولة توصيلة' }
+    },
+    {
+        id: 46,
+        type: 'image',
+        thumbnail: '/assets/Media/شن تراجي 2.jpg',
+        url: '/assets/Media/شن تراجي 2.jpg',
+        category: 'Production',
+        title: { en: 'What Are You Waiting For', ar: 'شن تراجي' }
+    },
+    // Events
+    {
+        id: 47,
         type: 'image',
         thumbnail: '/assets/Media/اليوم التاني 3.jpg',
         url: '/assets/Media/اليوم التاني 3.jpg',
         category: 'Events',
         title: { en: 'Event Coverage: Day 2', ar: 'تغطية اليوم الثاني' }
+    },
+    {
+        id: 48,
+        type: 'image',
+        thumbnail: '/assets/Media/2 يومان.jpg',
+        url: '/assets/Media/2 يومان.jpg',
+        category: 'Events',
+        title: { en: '2 Days Countdown', ar: 'يومان على الانطلاق' }
+    },
+    {
+        id: 49,
+        type: 'image',
+        thumbnail: '/assets/Media/العد التناازلي 2.jpg',
+        url: '/assets/Media/العد التناازلي 2.jpg',
+        category: 'Events',
+        title: { en: 'Countdown', ar: 'العد التنازلي' }
+    },
+    {
+        id: 50,
+        type: 'image',
+        thumbnail: '/assets/Media/متبقى يوم 2.jpg',
+        url: '/assets/Media/متبقى يوم 2.jpg',
+        category: 'Events',
+        title: { en: '1 Day Remaining', ar: 'متبقي يوم واحد' }
+    },
+    {
+        id: 51,
+        type: 'image',
+        thumbnail: '/assets/Media/متبقي 7 ايام copy.jpg',
+        url: '/assets/Media/متبقي 7 ايام copy.jpg',
+        category: 'Events',
+        title: { en: '7 Days Remaining', ar: 'متبقي 7 أيام' }
+    },
+    {
+        id: 52,
+        type: 'image',
+        thumbnail: '/assets/Media/مستعدون 2 22.jpg',
+        url: '/assets/Media/مستعدون 2 22.jpg',
+        category: 'Events',
+        title: { en: 'We Are Ready', ar: 'مستعدون' }
+    },
+    {
+        id: 53,
+        type: 'image',
+        thumbnail: '/assets/Media/البرنامج العام لبطولة الصافنات copy.jpg',
+        url: '/assets/Media/البرنامج العام لبطولة الصافنات copy.jpg',
+        category: 'Events',
+        title: { en: 'Championship Program', ar: 'البرنامج العام للبطولة' }
+    },
+    {
+        id: 54,
+        type: 'image',
+        thumbnail: '/assets/Media/دعوة للمعرض التراثي للصقور copy.jpg',
+        url: '/assets/Media/دعوة للمعرض التراثي للصقور copy.jpg',
+        category: 'Events',
+        title: { en: 'Falcon Heritage Exhibition', ar: 'المعرض التراثي للصقور' }
+    },
+    {
+        id: 55,
+        type: 'image',
+        thumbnail: '/assets/Media/المدينة الفائزة 2.jpg',
+        url: '/assets/Media/المدينة الفائزة 2.jpg',
+        category: 'Events',
+        title: { en: 'Winning City', ar: 'المدينة الفائزة' }
+    },
+    {
+        id: 56,
+        type: 'image',
+        thumbnail: '/assets/Media/جوائز الترتيب الثاني.jpg',
+        url: '/assets/Media/جوائز الترتيب الثاني.jpg',
+        category: 'Events',
+        title: { en: 'Runner-up Awards', ar: 'جوائز الترتيب الثاني' }
+    },
+    {
+        id: 57,
+        type: 'image',
+        thumbnail: '/assets/Media/موعد انطلاق البطولة copy.jpg',
+        url: '/assets/Media/موعد انطلاق البطولة copy.jpg',
+        category: 'Events',
+        title: { en: 'Championship Launch Date', ar: 'موعد انطلاق البطولة' }
+    },
+    {
+        id: 58,
+        type: 'image',
+        thumbnail: '/assets/Media/ثورة 17 فبراير 2.jpg',
+        url: '/assets/Media/ثورة 17 فبراير 2.jpg',
+        category: 'Events',
+        title: { en: 'February 17 Revolution', ar: 'ثورة 17 فبراير' }
+    },
+    {
+        id: 59,
+        type: 'image',
+        thumbnail: '/assets/Media/عيد مبارك 2.jpg',
+        url: '/assets/Media/عيد مبارك 2.jpg',
+        category: 'Events',
+        title: { en: 'Eid Mubarak', ar: 'عيد مبارك' }
+    },
+    {
+        id: 60,
+        type: 'image',
+        thumbnail: '/assets/Media/الساعة 8 3.jpg',
+        url: '/assets/Media/الساعة 8 3.jpg',
+        category: 'Events',
+        title: { en: '8 O\'Clock Show', ar: 'الساعة 8' }
     },
     // Video Samples (YouTube)
     {
