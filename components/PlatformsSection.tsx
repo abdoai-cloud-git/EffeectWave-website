@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, Instagram, Facebook } from 'lucide-react';
 
 interface PlatformsSectionProps {
     theme: 'agency' | 'production';
@@ -157,9 +157,33 @@ const PlatformsSection: React.FC<PlatformsSectionProps> = ({ theme, lang }) => {
                                 </div>
 
                                 {/* Description */}
-                                <p className="text-silver/70 text-base sm:text-lg mb-8 leading-relaxed">
+                                <p className="text-silver/70 text-base sm:text-lg mb-6 leading-relaxed">
                                     {platform.description}
                                 </p>
+
+                                {/* Social Media Links */}
+                                {platform.socialLinks && platform.socialLinks.length > 0 && (
+                                    <div className="flex items-center gap-3 mb-6">
+                                        {platform.socialLinks.map((social, idx) => (
+                                            <a
+                                                key={idx}
+                                                href={social.url}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center hover:bg-white/10 hover:border-white/20 transition-all duration-300 hover:scale-110"
+                                                onClick={(e) => e.stopPropagation()}
+                                                aria-label={social.type}
+                                            >
+                                                {social.type === 'instagram' && (
+                                                    <Instagram size={18} className="text-white" />
+                                                )}
+                                                {social.type === 'facebook' && (
+                                                    <Facebook size={18} className="text-white" />
+                                                )}
+                                            </a>
+                                        ))}
+                                    </div>
+                                )}
 
                                 {/* CTA Button - Only show for active platforms */}
                                 {platform.url !== '#' && (
