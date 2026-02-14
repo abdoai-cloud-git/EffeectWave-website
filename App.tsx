@@ -1,5 +1,5 @@
-import React, { useState, useEffect, Suspense } from 'react';
-import { HashRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 
@@ -15,6 +15,31 @@ const PhilosophyPage = React.lazy(() => import('./pages/PhilosophyPage'));
 const TeamPage = React.lazy(() => import('./pages/TeamPage'));
 const ContactPage = React.lazy(() => import('./pages/ContactPage'));
 const GalleryPage = React.lazy(() => import('./pages/GalleryPage'));
+const PrivacyPage = React.lazy(() => import('./pages/PrivacyPage'));
+const TermsPage = React.lazy(() => import('./pages/TermsPage'));
+const NotFoundPage = React.lazy(() => import('./pages/NotFoundPage'));
+
+// Consolidated navigation items
+const NAV_ITEMS = {
+  ar: [
+    { label: 'الرئيسية', path: '/' },
+    { label: 'خدماتنا', path: '/services' },
+    { label: 'من نحن', path: '/about' },
+    { label: 'فلسفتنا', path: '/philosophy' },
+    { label: 'فريق العمل', path: '/team' },
+    { label: 'المعرض', path: '/gallery' },
+    { label: 'تواصل معنا', path: '/contact' },
+  ],
+  en: [
+    { label: 'Home', path: '/' },
+    { label: 'Services', path: '/services' },
+    { label: 'About Us', path: '/about' },
+    { label: 'Philosophy', path: '/philosophy' },
+    { label: 'Team', path: '/team' },
+    { label: 'Gallery', path: '/gallery' },
+    { label: 'Contact', path: '/contact' },
+  ],
+};
 
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center min-h-screen bg-obsidian text-accent">
@@ -60,9 +85,11 @@ function AppContent() {
   const [theme, setTheme] = useState<'agency' | 'production'>('agency');
   const [lang, setLang] = useState<'ar' | 'en'>('ar');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [hasInteracted, setHasInteracted] = useState(false);
   const location = useLocation();
+  const navItems = NAV_ITEMS[lang];
 
   const toggleLang = () => {
     setLang(prev => prev === 'ar' ? 'en' : 'ar');
@@ -74,23 +101,10 @@ function AppContent() {
     production: '#b20600' // Red
   };
 
-  const navItems = lang === 'ar' ? [
-    { label: 'الرئيسية', path: '/' },
-    { label: 'خدماتنا', path: '/services' },
-    { label: 'من نحن', path: '/about' },
-    { label: 'فلسفتنا', path: '/philosophy' },
-    { label: 'فريق العمل', path: '/team' },
-    { label: 'المعرض', path: '/gallery' },
-    { label: 'تواصل معنا', path: '/contact' },
-  ] : [
-    { label: 'Home', path: '/' },
-    { label: 'Services', path: '/services' },
-    { label: 'About Us', path: '/about' },
-    { label: 'Philosophy', path: '/philosophy' },
-    { label: 'Team', path: '/team' },
-    { label: 'Gallery', path: '/gallery' },
-    { label: 'Contact', path: '/contact' },
-  ];
+  // Close menu on route change
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
 
   // Scroll listener for navbar visibility
   useEffect(() => {
@@ -117,6 +131,11 @@ function AppContent() {
         '--color-accent': colors[theme]
       } as React.CSSProperties}
     >
+      {/* Skip to Content — Accessibility */}
+      <a href="#main-content" className="skip-to-content">
+        {lang === 'ar' ? 'تخطي إلى المحتوى' : 'Skip to content'}
+      </a>
+
       <ScrollToTop />
 
       {/* --- GLOBAL PERSISTENT BACKGROUND --- */}
@@ -137,19 +156,38 @@ function AppContent() {
           </div>
         </Link>
 
+        {/* Desktop Horizontal Nav (lg+) */}
+        <nav className="hidden lg:flex items-center gap-1" aria-label="Main navigation">
+          {navItems.map((item) => (
+            <Link
+              key={item.path}
+              to={item.path}
+              className={`px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none ${location.pathname === item.path
+                  ? 'text-accent'
+                  : 'text-white/60 hover:text-white hover:bg-white/5'
+                }`}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
         <div className="flex items-center gap-4 pointer-events-auto">
           {/* Language Toggle Button */}
           <button
             onClick={toggleLang}
             aria-label={lang === 'ar' ? 'Switch to English' : 'التغيير للغة العربية'}
-            className="px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] font-bold hover:bg-accent hover:text-black transition-all duration-300 tracking-widest font-english min-w-[40px] min-h-[36px] flex items-center justify-center"
+            className="px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] font-bold hover:bg-accent hover:text-black transition-all duration-300 tracking-widest font-english min-w-[40px] min-h-[36px] flex items-center justify-center focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none"
           >
             {lang === 'ar' ? 'EN' : 'AR'}
           </button>
 
+          {/* Mobile Menu Toggle (below lg) */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-white p-2 hover:text-accent transition-colors block z-50 relative focus:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center"
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMenuOpen}
+            className="text-white p-2 hover:text-accent transition-colors lg:hidden z-50 relative focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none min-w-[44px] min-h-[44px] flex items-center justify-center"
           >
             {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
           </button>
@@ -157,63 +195,29 @@ function AppContent() {
           <AnimatePresence>
             {isMenuOpen && (
               <motion.div
+                ref={menuRef}
+                role="dialog"
+                aria-modal="true"
+                aria-label={lang === 'ar' ? 'القائمة الرئيسية' : 'Main menu'}
                 initial={{ opacity: 0, y: -10, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -10, scale: 0.95 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="absolute top-full left-0 sm:left-auto mt-4 w-[calc(100vw-2rem)] sm:w-56 bg-black/80 backdrop-blur-3xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-40 origin-top-left"
+                className="absolute top-full left-0 sm:left-auto mt-4 w-[calc(100vw-2rem)] sm:w-56 bg-black/80 backdrop-blur-3xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden z-40 origin-top-left lg:hidden"
               >
-                <div className="py-2">
-                  <Link
-                    to="/"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block px-6 py-3 text-white hover:bg-white/10 hover:text-accent transition-colors duration-300 font-bold border-b border-white/5 last:border-0 text-right"
-                  >
-                    {lang === 'ar' ? 'الرئيسية' : 'Home'}
-                  </Link>
-                  <Link
-                    to="/services"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block px-6 py-3 text-white hover:bg-white/10 hover:text-accent transition-colors duration-300 font-bold border-b border-white/5 last:border-0 text-right"
-                  >
-                    {lang === 'ar' ? 'خدماتنا' : 'Services'}
-                  </Link>
-                  <Link
-                    to="/about"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block px-6 py-3 text-white hover:bg-white/10 hover:text-accent transition-colors duration-300 font-bold border-b border-white/5 last:border-0 text-right"
-                  >
-                    {lang === 'ar' ? 'من نحن' : 'About'}
-                  </Link>
-                  <Link
-                    to="/philosophy"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block px-6 py-3 text-white hover:bg-white/10 hover:text-accent transition-colors duration-300 font-bold border-b border-white/5 last:border-0 text-right"
-                  >
-                    {lang === 'ar' ? 'فلسفتنا' : 'Philosophy'}
-                  </Link>
-                  <Link
-                    to="/team"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block px-6 py-3 text-white hover:bg-white/10 hover:text-accent transition-colors duration-300 font-bold border-b border-white/5 last:border-0 text-right"
-                  >
-                    {lang === 'ar' ? 'فريق العمل' : 'Team'}
-                  </Link>
-                  <Link
-                    to="/gallery"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block px-6 py-3 text-white hover:bg-white/10 hover:text-accent transition-colors duration-300 font-bold border-b border-white/5 last:border-0 text-right"
-                  >
-                    {lang === 'ar' ? 'المعرض' : 'Gallery'}
-                  </Link>
-                  <Link
-                    to="/contact"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block px-6 py-3 text-white hover:bg-white/10 hover:text-accent transition-colors duration-300 font-bold border-b border-white/5 last:border-0 text-right"
-                  >
-                    {lang === 'ar' ? 'تواصل معنا' : 'Contact'}
-                  </Link>
-                </div>
+                <nav className="py-2" aria-label="Mobile navigation">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`block px-6 py-3 hover:bg-white/10 hover:text-accent transition-colors duration-300 font-bold border-b border-white/5 last:border-0 text-right focus-visible:ring-2 focus-visible:ring-accent focus-visible:outline-none ${location.pathname === item.path ? 'text-accent' : 'text-white'
+                        }`}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </nav>
               </motion.div>
             )}
           </AnimatePresence>
@@ -251,7 +255,7 @@ function AppContent() {
             <button
               onClick={() => handleThemeChange('production')}
               aria-label="Switch to Production theme"
-              className={`relative z-20 px-4 py-1.5 rounded-full text-[9px] font-bold font-english tracking-widest transition-all duration-300 w-32 text-center focus:outline-none ${theme === 'production' ? 'text-white' : 'text-white/40 hover:text-white'
+              className={`relative z-20 px-4 py-1.5 rounded-full text-[9px] font-bold font-english tracking-widest transition-all duration-300 w-32 text-center focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none ${theme === 'production' ? 'text-white' : 'text-white/40 hover:text-white'
                 }`}
             >
               PRODUCTION
@@ -261,7 +265,7 @@ function AppContent() {
             <button
               onClick={() => handleThemeChange('agency')}
               aria-label="Switch to Agency theme"
-              className={`relative z-20 px-4 py-1.5 rounded-full text-[9px] font-bold font-english tracking-widest transition-all duration-300 w-32 text-center focus:outline-none ${theme === 'agency' ? 'text-black' : 'text-white/40 hover:text-white'
+              className={`relative z-20 px-4 py-1.5 rounded-full text-[9px] font-bold font-english tracking-widest transition-all duration-300 w-32 text-center focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none ${theme === 'agency' ? 'text-black' : 'text-white/40 hover:text-white'
                 }`}
             >
               AGENCY
@@ -299,7 +303,8 @@ function AppContent() {
 
       <AnimatePresence mode="wait">
         <motion.main
-          key={theme + location.pathname} // Key change triggers the animation
+          id="main-content"
+          key={theme + location.pathname}
           className="relative z-10 pb-24 sm:pb-28 md:pb-32 min-h-screen"
           variants={pageVariants}
           initial="initial"
@@ -315,6 +320,9 @@ function AppContent() {
               <Route path="/team" element={<TeamPage theme={theme} lang={lang} />} />
               <Route path="/gallery" element={<GalleryPage lang={lang} />} />
               <Route path="/contact" element={<ContactPage theme={theme} lang={lang} />} />
+              <Route path="/privacy" element={<PrivacyPage theme={theme} lang={lang} />} />
+              <Route path="/terms" element={<TermsPage theme={theme} lang={lang} />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>
         </motion.main>

@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import PageLayout from '../components/PageLayout';
 import { Mail, Phone, Globe, ArrowRight, ArrowUpLeft } from 'lucide-react';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 interface ContactPageProps {
   theme: 'agency' | 'production';
@@ -10,6 +11,13 @@ interface ContactPageProps {
 
 const ContactPage: React.FC<ContactPageProps> = ({ theme, lang }) => {
   const accentColor = theme === 'agency' ? '#ebe125' : '#b20600';
+
+  useDocumentMeta({
+    title: lang === 'ar' ? 'تواصل معنا | موجة تأثير' : 'Contact | Effect Wave',
+    description: lang === 'ar'
+      ? 'تواصل مع وكالة موجة تأثير للتسويق والإنتاج الإعلامي'
+      : 'Contact Effect Wave Agency for marketing and media production services',
+  });
 
   // Form state
   const [formData, setFormData] = useState({
@@ -118,8 +126,9 @@ const ContactPage: React.FC<ContactPageProps> = ({ theme, lang }) => {
 
             <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
               <div className="space-y-2">
-                <label className={`text-sm text-silver/60 ${lang === 'ar' ? 'mr-1' : 'ml-1'}`}>{t.nameLabel}</label>
+                <label htmlFor="contact-name" className={`text-sm text-silver/60 ${lang === 'ar' ? 'mr-1' : 'ml-1'}`}>{t.nameLabel}</label>
                 <input
+                  id="contact-name"
                   type="text"
                   required
                   value={formData.name}
@@ -131,8 +140,9 @@ const ContactPage: React.FC<ContactPageProps> = ({ theme, lang }) => {
               </div>
 
               <div className="space-y-2">
-                <label className={`text-sm text-silver/60 ${lang === 'ar' ? 'mr-1' : 'ml-1'}`}>{t.emailLabel}</label>
+                <label htmlFor="contact-email" className={`text-sm text-silver/60 ${lang === 'ar' ? 'mr-1' : 'ml-1'}`}>{t.emailLabel}</label>
                 <input
+                  id="contact-email"
                   type="email"
                   required
                   value={formData.email}
@@ -144,8 +154,9 @@ const ContactPage: React.FC<ContactPageProps> = ({ theme, lang }) => {
               </div>
 
               <div className="space-y-2">
-                <label className={`text-sm text-silver/60 ${lang === 'ar' ? 'mr-1' : 'ml-1'}`}>{t.messageLabel}</label>
+                <label htmlFor="contact-message" className={`text-sm text-silver/60 ${lang === 'ar' ? 'mr-1' : 'ml-1'}`}>{t.messageLabel}</label>
                 <textarea
+                  id="contact-message"
                   rows={4}
                   required
                   value={formData.message}

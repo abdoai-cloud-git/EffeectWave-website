@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Instagram, Linkedin, Phone } from 'lucide-react';
 import PageLayout from '../components/PageLayout';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 interface TeamPageProps {
   theme: 'agency' | 'production';
@@ -32,6 +33,13 @@ const socialIcon = (type: SocialLink['type']) => {
 
 const TeamPage: React.FC<TeamPageProps> = ({ theme, lang }) => {
   const accentColor = theme === 'agency' ? '#ebe125' : '#b20600';
+
+  useDocumentMeta({
+    title: lang === 'ar' ? 'فريق العمل | موجة تأثير' : 'Team | Effect Wave',
+    description: lang === 'ar'
+      ? 'تعرف على فريق عمل وكالة موجة تأثير القيادي'
+      : 'Meet the Effect Wave Agency leadership team',
+  });
 
   const teamMembers: TeamMember[] = [
     {

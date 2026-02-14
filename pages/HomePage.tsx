@@ -8,6 +8,7 @@ import WhyUs from '../components/WhyUs';
 import Team from '../components/Team';
 import PlatformsSection from '../components/PlatformsSection';
 import ClientsSection from '../components/ClientsSection';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 import {
   Users, Sparkles, Layers,
@@ -285,6 +286,13 @@ const productionContent = {
 
 const HomePage: React.FC<HomePageProps> = ({ theme, lang }) => {
   const content = (theme === 'agency' ? agencyContent : productionContent)[lang];
+
+  useDocumentMeta({
+    title: lang === 'ar' ? 'الرئيسية | موجة تأثير' : 'Home | Effect Wave',
+    description: lang === 'ar'
+      ? 'وكالة رائدة في التسويق والإعلام تقدم حلولاً مبتكرة للعلامات التجارية والمؤسسات'
+      : 'A leading marketing and media agency providing innovative solutions for brands and institutions',
+  });
 
   return (
     <>

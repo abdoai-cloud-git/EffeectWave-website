@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Gallery from '../components/Gallery';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 interface GalleryPageProps {
     lang: 'en' | 'ar';
@@ -8,6 +9,11 @@ interface GalleryPageProps {
 
 const GalleryPage: React.FC<GalleryPageProps> = ({ lang }) => {
     const { pathname } = useLocation();
+
+    useDocumentMeta({
+        title: lang === 'ar' ? 'المعرض' : 'Gallery',
+        description: lang === 'ar' ? 'معرض أعمال وكالة موجة تأثير الإبداعية' : 'Effect Wave Agency creative portfolio gallery',
+    });
 
     useEffect(() => {
         window.scrollTo(0, 0);

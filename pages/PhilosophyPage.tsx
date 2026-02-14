@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import PageLayout from '../components/PageLayout';
 import { Lightbulb, Plus, TrendingUp } from 'lucide-react';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 
 interface PhilosophyPageProps {
   theme: 'agency' | 'production';
@@ -11,6 +12,13 @@ interface PhilosophyPageProps {
 
 const PhilosophyPage: React.FC<PhilosophyPageProps> = ({ theme, lang }) => {
   const accentColor = theme === 'agency' ? '#ebe125' : '#b20600';
+
+  useDocumentMeta({
+    title: lang === 'ar' ? 'فلسفتنا | موجة تأثير' : 'Philosophy | Effect Wave',
+    description: lang === 'ar'
+      ? 'فلسفة موجة تأثير في التسويق والإعلام - التأثير يبدأ من الفهم'
+      : 'Effect Wave philosophy in marketing and media - Impact starts with understanding',
+  });
 
   const t = {
     title: lang === 'ar' ? "فلسفتنا" : "Our Philosophy",

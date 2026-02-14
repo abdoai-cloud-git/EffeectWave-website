@@ -1,7 +1,9 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import PageLayout from '../components/PageLayout';
+import { useDocumentMeta } from '../hooks/useDocumentMeta';
 import { Target, Eye } from 'lucide-react';
 
 interface AboutPageProps {
@@ -11,6 +13,13 @@ interface AboutPageProps {
 
 const AboutPage: React.FC<AboutPageProps> = ({ theme, lang }) => {
   const accentColor = theme === 'agency' ? '#ebe125' : '#b20600';
+
+  useDocumentMeta({
+    title: lang === 'ar' ? 'من نحن | موجة تأثير' : 'About Us | Effect Wave',
+    description: lang === 'ar'
+      ? 'تعرف على وكالة موجة تأثير ورؤيتنا ورسالتنا في التسويق والإعلام'
+      : 'Learn about Effect Wave Agency, our vision and mission in marketing and media',
+  });
 
   const content = {
     agency: {
@@ -158,6 +167,36 @@ const AboutPage: React.FC<AboutPageProps> = ({ theme, lang }) => {
           </motion.div>
 
         </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="px-4 sm:px-6 max-w-4xl mx-auto mt-20 mb-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center p-10 sm:p-16 rounded-[2rem] border border-white/5 bg-onyx/30 backdrop-blur-sm relative overflow-hidden"
+        >
+          <div className="absolute top-0 left-0 w-full h-1" style={{ background: `linear-gradient(90deg, transparent, ${accentColor}, transparent)` }} />
+          <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
+            {lang === 'ar' ? 'مستعد لصنع التأثير؟' : 'Ready to make an impact?'}
+          </h2>
+          <p className="text-silver/60 text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+            {lang === 'ar'
+              ? 'دعنا نتحدث عن مشروعك ونكتشف كيف يمكننا تحويل رؤيتك إلى واقع.'
+              : 'Let\'s talk about your project and discover how we can turn your vision into reality.'}
+          </p>
+          <Link
+            to="/contact"
+            className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-black text-sm tracking-widest hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all duration-300 min-h-[48px]"
+            style={{ backgroundColor: accentColor }}
+          >
+            {lang === 'ar' ? 'تواصل معنا' : 'Contact Us'}
+            <svg className={`w-4 h-4 ${lang === 'ar' ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </Link>
+        </motion.div>
       </section>
     </PageLayout>
   );

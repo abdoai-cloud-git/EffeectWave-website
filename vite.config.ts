@@ -10,10 +10,7 @@ export default defineConfig(({ mode }) => {
       host: '0.0.0.0',
     },
     plugins: [react()],
-    define: {
-      'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-      'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
-    },
+    // API keys removed — they are not used in the frontend and were leaking into the bundle
     resolve: {
       alias: {
         '@': path.resolve(__dirname, '.'),

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Mail, Phone, Globe, Instagram, Linkedin, Facebook } from 'lucide-react';
 
 interface FooterProps {
@@ -54,7 +55,7 @@ const Footer: React.FC<FooterProps> = ({ description, lang }) => {
               </div>
             </a>
 
-            <div className="flex items-center gap-4 group">
+            <a href="tel:+218944689827" className="flex items-center gap-4 group">
               <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-accent/10 group-hover:text-accent transition-colors duration-300">
                 <Phone />
               </div>
@@ -63,11 +64,11 @@ const Footer: React.FC<FooterProps> = ({ description, lang }) => {
                   {lang === 'ar' ? 'اتصل بنا' : 'Call Us'}
                 </div>
                 <div className="text-xl text-white font-english group-hover:text-accent transition-colors duration-300 flex flex-col items-start" dir="ltr">
-                  <span>094 - 468 98 27</span>
-                  <span>091 - 882 41 94</span>
+                  <a href="tel:+218944689827" className="hover:underline">094 - 468 98 27</a>
+                  <a href="tel:+218918824194" className="hover:underline">091 - 882 41 94</a>
                 </div>
               </div>
-            </div>
+            </a>
 
             <a href="https://www.effectwaveco.com" className="flex items-center gap-4 group">
               <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center group-hover:bg-accent/10 group-hover:text-accent transition-colors duration-300">
@@ -87,8 +88,8 @@ const Footer: React.FC<FooterProps> = ({ description, lang }) => {
       <div className="max-w-7xl mx-auto pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-silver/40 text-sm">
         <p>&copy; {new Date().getFullYear()} Effect Wave Agency. All rights reserved.</p>
         <div className="flex gap-6 mt-4 md:mt-0">
-          <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-          <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+          <Link to="/privacy" className="hover:text-white transition-colors">{lang === 'ar' ? 'سياسة الخصوصية' : 'Privacy Policy'}</Link>
+          <Link to="/terms" className="hover:text-white transition-colors">{lang === 'ar' ? 'شروط الخدمة' : 'Terms of Service'}</Link>
         </div>
       </div>
 
