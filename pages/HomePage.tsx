@@ -292,6 +292,8 @@ const HomePage: React.FC<HomePageProps> = ({ theme, lang }) => {
     description: lang === 'ar'
       ? 'وكالة رائدة في التسويق والإعلام تقدم حلولاً مبتكرة للعلامات التجارية والمؤسسات'
       : 'A leading marketing and media agency providing innovative solutions for brands and institutions',
+    canonicalUrl: 'https://www.effectwaveco.com/',
+    ogLocale: lang === 'ar' ? 'ar_LY' : 'en_US',
   });
 
   return (

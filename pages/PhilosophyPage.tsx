@@ -18,6 +18,8 @@ const PhilosophyPage: React.FC<PhilosophyPageProps> = ({ theme, lang }) => {
     description: lang === 'ar'
       ? 'فلسفة موجة تأثير في التسويق والإعلام - التأثير يبدأ من الفهم'
       : 'Effect Wave philosophy in marketing and media - Impact starts with understanding',
+    canonicalUrl: 'https://www.effectwaveco.com/philosophy',
+    ogLocale: lang === 'ar' ? 'ar_LY' : 'en_US',
   });
 
   const t = {

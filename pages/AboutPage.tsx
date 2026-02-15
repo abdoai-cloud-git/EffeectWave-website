@@ -19,6 +19,8 @@ const AboutPage: React.FC<AboutPageProps> = ({ theme, lang }) => {
     description: lang === 'ar'
       ? 'تعرف على وكالة موجة تأثير ورؤيتنا ورسالتنا في التسويق والإعلام'
       : 'Learn about Effect Wave Agency, our vision and mission in marketing and media',
+    canonicalUrl: 'https://www.effectwaveco.com/about',
+    ogLocale: lang === 'ar' ? 'ar_LY' : 'en_US',
   });
 
   const content = {

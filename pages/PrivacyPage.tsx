@@ -13,6 +13,8 @@ const PrivacyPage: React.FC<PrivacyPageProps> = ({ theme, lang }) => {
         description: lang === 'ar'
             ? 'سياسة الخصوصية لوكالة موجة تأثير'
             : 'Privacy Policy for Effect Wave Agency',
+        canonicalUrl: 'https://www.effectwaveco.com/privacy',
+        ogLocale: lang === 'ar' ? 'ar_LY' : 'en_US',
     });
 
     const content = {

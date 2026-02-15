@@ -13,6 +13,8 @@ const GalleryPage: React.FC<GalleryPageProps> = ({ lang }) => {
     useDocumentMeta({
         title: lang === 'ar' ? 'المعرض' : 'Gallery',
         description: lang === 'ar' ? 'معرض أعمال وكالة موجة تأثير الإبداعية' : 'Effect Wave Agency creative portfolio gallery',
+        canonicalUrl: 'https://www.effectwaveco.com/gallery',
+        ogLocale: lang === 'ar' ? 'ar_LY' : 'en_US',
     });
 
     useEffect(() => {

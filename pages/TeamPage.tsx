@@ -39,6 +39,8 @@ const TeamPage: React.FC<TeamPageProps> = ({ theme, lang }) => {
     description: lang === 'ar'
       ? 'تعرف على فريق عمل وكالة موجة تأثير القيادي'
       : 'Meet the Effect Wave Agency leadership team',
+    canonicalUrl: 'https://www.effectwaveco.com/team',
+    ogLocale: lang === 'ar' ? 'ar_LY' : 'en_US',
   });
 
   const teamMembers: TeamMember[] = [

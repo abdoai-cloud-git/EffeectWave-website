@@ -17,6 +17,8 @@ const ContactPage: React.FC<ContactPageProps> = ({ theme, lang }) => {
     description: lang === 'ar'
       ? 'تواصل مع وكالة موجة تأثير للتسويق والإنتاج الإعلامي'
       : 'Contact Effect Wave Agency for marketing and media production services',
+    canonicalUrl: 'https://www.effectwaveco.com/contact',
+    ogLocale: lang === 'ar' ? 'ar_LY' : 'en_US',
   });
 
   // Form state
@@ -83,8 +85,8 @@ const ContactPage: React.FC<ContactPageProps> = ({ theme, lang }) => {
                   <div>
                     <h3 className="text-xs text-silver/40 uppercase tracking-widest mb-2 font-english">{t.phone}</h3>
                     <div className="flex flex-col gap-1">
-                      <p className="text-xl font-english text-white dir-ltr text-right group-hover:text-accent transition-colors">094 - 468 98 27</p>
-                      <p className="text-xl font-english text-white dir-ltr text-right group-hover:text-accent transition-colors">091 - 882 41 94</p>
+                      <p dir="ltr" className="text-xl font-english text-white group-hover:text-accent transition-colors">094 - 468 98 27</p>
+                      <p dir="ltr" className="text-xl font-english text-white group-hover:text-accent transition-colors">091 - 882 41 94</p>
                     </div>
                   </div>
                 </a>

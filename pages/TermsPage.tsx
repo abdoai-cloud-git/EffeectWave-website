@@ -13,6 +13,8 @@ const TermsPage: React.FC<TermsPageProps> = ({ theme, lang }) => {
         description: lang === 'ar'
             ? 'شروط وأحكام استخدام موقع موجة تأثير'
             : 'Terms and conditions for using Effect Wave website',
+        canonicalUrl: 'https://www.effectwaveco.com/terms',
+        ogLocale: lang === 'ar' ? 'ar_LY' : 'en_US',
     });
 
     const content = {

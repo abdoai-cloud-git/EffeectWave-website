@@ -22,6 +22,8 @@ const ServicesPage: React.FC<ServicesPageProps> = ({ theme, lang }) => {
     description: lang === 'ar'
       ? 'استكشف خدمات التسويق والإنتاج الإعلامي التي تقدمها وكالة موجة تأثير'
       : 'Explore marketing and media production services offered by Effect Wave Agency',
+    canonicalUrl: 'https://www.effectwaveco.com/services',
+    ogLocale: lang === 'ar' ? 'ar_LY' : 'en_US',
   });
 
   const agencyServices = {
