@@ -37,8 +37,15 @@ const ContactPage: React.FC<ContactPageProps> = ({ theme, lang }) => {
       `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
     );
 
-    // Open user's email client
-    window.location.href = `mailto:info@effectwaveco.com?subject=${subject}&body=${body}`;
+    // Open user's email client using a dynamic link to ensure desktop compatibility
+    const mailtoUrl = `mailto:info@effectwaveco.com?subject=${subject}&body=${body}`;
+    const link = document.createElement('a');
+    link.href = mailtoUrl;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const t = {
